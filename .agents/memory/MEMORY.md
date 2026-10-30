@@ -1,0 +1,1 @@
+- [Merge completion](merge-completion.md) — verify incoming ancestry, not just cleared conflict markers; staged-only resolutions did not persist reliably.
