@@ -25,19 +25,23 @@ Open `index.html` in a browser. Pages: Home, Shop, four bag pages, Subscribe, Pi
 | 5 | Subscriptions, 10% off every 2 or 4 weeks, subscribe as default | Needs Shopify Subscriptions app |
 | 6 | Welcome email with WELCOME10, reorder reminder after 12 days | Needs Shopify Email |
 | 7 | Reviews, request 7 days after delivery | Needs Judge.me |
-| 8 | Origin, roast level, roast date, brew guide, 2 more photos per bag | In preview, photos to shoot |
+| 8 | Origin, roast level, roast day, brew guide, 2 more photos per bag | In preview, photos to shoot |
 | 9 | QR code on tables and cups linking to subscribe | In preview, files in `qr/` |
 
 The Launch checklist page in the preview lists the Shopify admin steps and the email copy.
+
+## Confirmed shop details
+
+- Opening hours: Monday to Friday 7:30am to 4pm, Saturday 8am to 4pm, Sunday 9am to 3pm
+- Phone: 020 0000 0000
+- Business email: hello@isaacscoffee.co.uk
+- Shipping: Tracked 48 £3.95 under £35 and free at £35 or over; Tracked 24 £4.95 under £35 and £1.95 at £35 or over; click and collect free
 
 ## Draft copy to confirm
 
 Text with a dotted underline in the preview is a placeholder:
 
-- Opening hours
-- Phone number
-- Business email (hello@isaacscoffee.co.uk suggested)
-- Shipping rates: Tracked 48 £3.95, Tracked 24 £4.95 (£1.95 over £35), 12pm dispatch cut-off
+- Posting schedule and dispatch cutoff (Monday to Friday and 12pm were suggested; neither is confirmed)
 - House Blend origin
 - Process for House Blend, Blue Mountain Harmony and South American Fusion
 - Roast day
@@ -47,4 +51,4 @@ Text with a dotted underline in the preview is a placeholder:
 - Address source: Food Standards Agency listing, Lower Ground, 120 St Margarets Road, Twickenham TW1 2AA.
 - Roast levels come from the bag labels: Blue Mountain 2/5, South American Fusion 3.5/5, House Blend 4/5, Decaf 4/5.
 - The "!20" typo was not found on the home, contact, collection or product pages.
-- The House Blend has three names: "Dark Velvet Blend" on the bag, "Isaac's House Blend" in the shop, and `isaacs-dark-velvet-blend` in the URL.
+- The confirmed product name and preview route are “Isaac's House Blend” and `isaacs-house-blend`. Current House Blend bag artwork still says “Dark Velvet Blend” and is marked for replacement before launch.
