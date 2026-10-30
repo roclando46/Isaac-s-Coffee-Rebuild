@@ -23,6 +23,12 @@ python3 src/build.py
 
 This regenerates `index.html`; refresh the Preview after rebuilding.
 
+## Post-merge setup
+
+Replit runs `scripts/post-merge.sh` after task merges to rebuild `index.html`
+from the merged sources. The script uses only Python's standard library and
+can safely run repeatedly. Replit then reconciles the running workflow.
+
 ## Scope
 
 This is a clickable preview, not a connected Shopify storefront. Checkout,
