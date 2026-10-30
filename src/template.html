@@ -40,12 +40,6 @@ p{margin:0}
 .btn.ghost{background:transparent;color:var(--fg);border-color:var(--fg)}
 .btn:hover{filter:brightness(1.12)}
 .draft{color:var(--fg);border-bottom:2px dotted var(--fg);font-style:normal}
-/* preview ribbon */
-.ribbon{background:var(--ink);color:#FFFFFF;font-size:.8rem}
-.ribbon .wrap{display:flex;gap:.75rem 1.25rem;flex-wrap:wrap;align-items:center;justify-content:space-between;padding-block:.5rem}
-.ribbon a{color:#FFFFFF;font-weight:600}
-.ribbon .key{display:inline-flex;align-items:center;gap:.4rem}
-.ribbon .key i{display:inline-block;width:1.6em;height:.9em;border-bottom:2px dotted #FFFFFF}
 /* announcement + header */
 .announce{background:var(--band);color:var(--band-fg);text-align:center;font-size:.85rem;font-weight:500;letter-spacing:.02em}
 .announce .wrap{padding-block:.6rem}
@@ -252,15 +246,6 @@ footer .msg.err{color:#FFFFFF}
 .totals .grand{font-weight:600;font-size:1.1rem}
 .toast{position:fixed;left:50%;bottom:calc(1.25rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:.7rem 1.1rem;font-size:.9rem;z-index:50;max-width:calc(100% - 32px)}
 /* checklist + qr */
-.fixlist{display:grid;gap:0;counter-reset:fix}
-.fix{display:grid;grid-template-columns:2.2rem 1fr auto;gap:1rem;padding:1.25rem 0;border-bottom:1px solid var(--line);align-items:start}
-.fix .n{font:400 1.6rem/1 var(--serif)}
-.fix p{font-size:.92rem;color:var(--muted);margin-top:.25rem}
-.fix .where a{font-weight:600}
-.chip{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .6rem;border-radius:999px;white-space:nowrap;border:1.5px solid currentColor}
-.chip.done{background:#FFFFFF;color:#000000;border-color:#FFFFFF}
-.chip.admin{color:#FFFFFF}
-@media (max-width:600px){.fix{grid-template-columns:2rem 1fr}.fix .chip{grid-column:2;justify-self:start}}
 .emailcard{border:1px solid var(--line);background:var(--surface);padding:1.25rem;display:grid;gap:.75rem;min-width:0}
 .emailcard .meta{display:grid;grid-template-columns:auto 1fr;gap:.2rem .9rem;font-size:.85rem}
 .emailcard .meta dt{color:var(--muted)}
@@ -283,10 +268,6 @@ code.snip{display:block;overflow-x:auto;white-space:pre;font:.8rem/1.5 ui-monosp
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 
-<div class="ribbon"><div class="wrap">
-  <span><b>Rebuild preview</b> of isaacscoffee.co.uk with 12 fixes. <a href="#fixes">See what changed</a></span>
-  <span class="key"><i></i>Draft copy for you to confirm</span>
-</div></div>
 <div class="announce"><div class="wrap">Free UK delivery over £35. Christmas gifts are in: <a href="#gifts">gift subscriptions and gift cards</a>.</div></div>
 <header class="site"><div class="wrap">
   <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menu</button>
@@ -312,16 +293,16 @@ code.snip{display:block;overflow-x:auto;white-space:pre;font:.8rem/1.5 ui-monosp
     <div>
       <h4>Opening hours</h4>
       <ul>
-        <li>Mon to Fri <em class="draft">7:30am to 4pm</em></li>
-        <li>Saturday <em class="draft">8am to 4pm</em></li>
-        <li>Sunday <em class="draft">9am to 3pm</em></li>
+        <li>Mon to Fri 7:30am to 4pm</li>
+        <li>Saturday 8am to 4pm</li>
+        <li>Sunday 9am to 3pm</li>
       </ul>
     </div>
     <div>
       <h4>Get in touch</h4>
       <ul>
-        <li><em class="draft">hello@isaacscoffee.co.uk</em></li>
-        <li><em class="draft">020 0000 0000</em></li>
+        <li>hello@isaacscoffee.co.uk</li>
+        <li>020 0000 0000</li>
         <li><a href="#contact">Contact form</a></li>
         <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok</a></li>
       </ul>
@@ -361,7 +342,7 @@ const SIZES = ["250g","500g","1kg"], GRINDS = ["Whole Bean","Filter","Espresso"]
 const P = [
  {h:"isaacs-house-blend", name:"Isaac's House Blend", notes:"Caramel, dark chocolate", prices:[12.5,24,37], roast:4,
   blurb:"A rich espresso blend with smooth notes of dark chocolate and caramel. Extremely balanced, with low acidity. The coffee we pour every day in the café.",
-  origin:'<em class="draft">Brazil and Colombia</em>', process:'<em class="draft">Natural and washed</em>', best:"Espresso, milk drinks, cafetière",
+  origin:'<em class="draft">Draft: Brazil and Colombia (unconfirmed)</em>', process:'<em class="draft">Draft: natural and washed (unconfirmed)</em>', best:"Espresso, milk drinks, cafetière",
   imgs:["IMG-3577","IMG_7715"], slots:["Bag on the café counter","Flat white made with this blend"]},
  {h:"isaacs-decaf", name:"Brazilian Bold Decaf", notes:"Dark chocolate", prices:[15,28,41], roast:4,
   blurb:"Bold and smooth, with notes of dark chocolate. Decaffeinated by the chemical-free Swiss Water process, so you get a full cup any time of day.",
@@ -369,11 +350,11 @@ const P = [
   imgs:["IMG-3575","IMG_7718"], slots:["Beans close up","Cafetière brew at home"]},
  {h:"blue-mountain-harmony", name:"Blue Mountain Harmony", notes:"Honey, plum", prices:[12.5,24,37], roast:2,
   blurb:"A blend of Brazil and El Salvador put together to echo the famous Jamaica Blue Mountain beans. Light, sweet and clean.",
-  origin:"Brazil and El Salvador", process:'<em class="draft">Washed</em>', best:"Filter, V60, AeroPress",
+  origin:"Brazil and El Salvador", process:'<em class="draft">Draft: washed (unconfirmed)</em>', best:"Filter, V60, AeroPress",
   imgs:["IMG-3378"], slots:["Bag on the café counter","Pour-over in progress","Beans close up"]},
  {h:"south-american-fusion", name:"South American Fusion", notes:"Pecan, toffee, milk chocolate", prices:[12.5,24,37], roast:3.5,
   blurb:"A medium-bodied espresso with soft acidity, built from Guatemalan and Brazilian beans. Works as a straight shot and in milk.",
-  origin:"Guatemala and Brazil", process:'<em class="draft">Washed and natural</em>', best:"Espresso, moka pot, cafetière",
+  origin:"Guatemala and Brazil", process:'<em class="draft">Draft: washed and natural (unconfirmed)</em>', best:"Espresso, moka pot, cafetière",
   imgs:["IMG-3576"], slots:["Bag on the café counter","Espresso shot pulling","Beans close up"]},
 ];
 const ALT={
@@ -391,7 +372,7 @@ const ALT={
 const GIFT_SUB={3:45,6:89};
 const GIFT_CARD=[15,25,50,75];
 const XMAS=[["Royal Mail Tracked 48","Wed 16 December, 12pm"],["Royal Mail Tracked 24","Fri 18 December, 12pm"],["Gift cards by email","Up to Christmas Day"],["Click and collect, St Margarets","Thu 24 December, during opening hours"]];
-const TITLES={home:"Isaac's Coffee | Speciality Coffee and Matcha, St Margarets TW1",shop:"Shop Coffee Beans | Isaac's Coffee",subscribe:"Coffee Subscription, 10% Off | Isaac's Coffee",gifts:"Coffee Gifts and Gift Cards | Isaac's Coffee",pickup:"Click and Collect | Isaac's Coffee",shipping:"Shipping Policy | Isaac's Coffee",contact:"Contact and Opening Hours | Isaac's Coffee",fixes:"What Changed | Isaac's Coffee",launch:"Launch Checklist | Isaac's Coffee",qr:"In-store QR | Isaac's Coffee"};
+const TITLES={home:"Isaac's Coffee | Speciality Coffee and Matcha, St Margarets TW1",shop:"Shop Coffee Beans | Isaac's Coffee",subscribe:"Coffee Subscription, 10% Off | Isaac's Coffee",gifts:"Coffee Gifts and Gift Cards | Isaac's Coffee",pickup:"Click and Collect | Isaac's Coffee",shipping:"Shipping Policy | Isaac's Coffee",contact:"Contact and Opening Hours | Isaac's Coffee",launch:"Launch Checklist | Isaac's Coffee",qr:"In-store QR | Isaac's Coffee"};
 const xmasTable=()=>`<div class="table-wrap"><table class="rates"><thead><tr><th>Christmas 2026</th><th>Order by</th></tr></thead><tbody>${XMAS.map(r=>`<tr><td>${r[0]}</td><td><em class="draft">${r[1]}</em></td></tr>`).join("")}</tbody></table></div>`;
 const DRINKS=[["Iced Matcha","From £4.50","IcedMatcha","iced-matcha"],["Hot Coffee","From £3.70","Cappuccino","iced-drinks-copy"],["Matcha Latte","From £4.20","Matchalatteregular","matcha"]];
 const ROAST_LABEL={2:"Light to medium",3.5:"Medium",4:"Medium to dark"};
@@ -412,7 +393,6 @@ let cart=[]; try{cart=JSON.parse(localStorage.getItem("ic_cart")||"[]")}catch(e)
 const save=()=>{try{localStorage.setItem("ic_cart",JSON.stringify(cart))}catch(e){}};
 function toast(t){const el=$("#toast");el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,2600)}
 function beans(n){let s='<span class="beans" aria-hidden="true">';for(let i=1;i<=5;i++)s+=`<i class="${n>=i?"f":n>=i-.5?"h":""}"></i>`;return s+"</span>"}
-function roastDate(){const d=new Date();d.setDate(d.getDate()-((d.getDay()+7-1)%7));return d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}
 
 function card(p){return `<a class="card" href="#p-${p.h}">
  <div class="ph"><img src="${IMG[p.imgs[0]]}" alt="${esc(ALT[p.imgs[0]])}" loading="lazy"></div>
@@ -516,11 +496,11 @@ gifts:()=>`
 </section>`,
 
 shipping:()=>`
-<div class="wrap page-head"><p class="eyebrow">Policy</p><h1>Shipping policy and rates</h1><p>We roast in small batches and post Monday to Friday. Orders placed before <em class="draft">12pm</em> on a weekday leave the same day.</p></div>
+<div class="wrap page-head"><p class="eyebrow">Policy</p><h1>Shipping policy and rates</h1><p>Posting schedule and weekday dispatch cutoff: <em class="draft">Draft: Monday to Friday posting and a 12pm cutoff were suggested; neither the schedule nor same-day dispatch is confirmed.</em></p></div>
 <section class="block wrap" style="display:grid;gap:2.5rem">
  <div class="table-wrap"><table class="rates"><thead><tr><th>Service</th><th>Arrives</th><th>Under £35</th><th>£35 and over</th></tr></thead><tbody>
-  <tr><td>Royal Mail Tracked 48</td><td>2 to 3 working days</td><td><em class="draft">£3.95</em></td><td class="free">Free</td></tr>
-  <tr><td>Royal Mail Tracked 24</td><td>1 to 2 working days</td><td><em class="draft">£4.95</em></td><td><em class="draft">£1.95</em></td></tr>
+  <tr><td>Royal Mail Tracked 48</td><td>2 to 3 working days</td><td>£3.95</td><td class="free">Free</td></tr>
+  <tr><td>Royal Mail Tracked 24</td><td>1 to 2 working days</td><td>£4.95</td><td>£1.95</td></tr>
   <tr><td>Click and collect, St Margarets</td><td>Ready in 2 hours during opening times</td><td class="free">Free</td><td class="free">Free</td></tr>
  </tbody></table></div>
  <div class="cols">
@@ -538,9 +518,9 @@ contact:()=>`
 <div class="wrap contact-grid">
  <dl class="info">
   <div><dt>Address</dt><dd>Isaac's Coffee<br>Lower Ground, 120 St Margarets Road<br>Twickenham TW1 2AA</dd></div>
-  <div><dt>Opening hours</dt><dd class="hours"><span>Mon to Fri</span><em class="draft">7:30am to 4pm</em><span>Saturday</span><em class="draft">8am to 4pm</em><span>Sunday</span><em class="draft">9am to 3pm</em></dd></div>
-  <div><dt>Email</dt><dd class="copyrow"><em class="draft">hello@isaacscoffee.co.uk</em><button class="copy" data-copy="hello@isaacscoffee.co.uk">Copy</button></dd></div>
-  <div><dt>Phone</dt><dd class="copyrow"><em class="draft">020 0000 0000</em><button class="copy" data-copy="020 0000 0000">Copy</button></dd></div>
+  <div><dt>Opening hours</dt><dd class="hours"><span>Mon to Fri</span><span>7:30am to 4pm</span><span>Saturday</span><span>8am to 4pm</span><span>Sunday</span><span>9am to 3pm</span></dd></div>
+  <div><dt>Email</dt><dd class="copyrow">hello@isaacscoffee.co.uk <button class="copy" data-copy="hello@isaacscoffee.co.uk">Copy</button></dd></div>
+  <div><dt>Phone</dt><dd class="copyrow">020 0000 0000 <button class="copy" data-copy="020 0000 0000">Copy</button></dd></div>
   <div><dt>Getting here</dt><dd>1 minute from St Margarets station (South Western Railway).</dd></div>
  </dl>
  <div style="display:grid;gap:1.5rem;min-width:0">
@@ -556,25 +536,6 @@ contact:()=>`
    <p class="msg" id="cOut" role="status"></p>
   </form>
  </div>
-</div>`,
-
-fixes:()=>`
-<div class="wrap page-head"><p class="eyebrow">Change log</p><h1>What changed</h1><p>Green items are built into this preview. Amber items need a few clicks inside Shopify admin; the full copy and steps are on the <a href="#launch">launch checklist</a>.</p></div>
-<div class="wrap fixlist">
- ${[
- ["Shipping policy and rates","New shipping page, free delivery over £35, live cart bar showing how far each order is from free delivery.","#shipping","done"],
- ["Contact page and footer","Address, hours, phone, business email and a map on Contact and in every footer. I could not find “!20” on any live page, so check where you saw it.","#contact","done"],
- ["Sign-up, labels and stock","Sign-up button works with validation and a confirmation. One price shown once, one product name. Every variant shows its stock status.","#p-isaacs-house-blend","done"],
- ["Meta description","Set to: “Speciality coffee beans and ceremonial matcha from St Margarets, TW1. Delivered or collect in store.”","#launch","done"],
- ["Subscriptions","Subscribe is the default on every bag page, 10% off, every 2 or 4 weeks. Install Shopify Subscriptions to make checkout charge it.","#launch","admin"],
- ["Shopify Email flows","Welcome email with WELCOME10 and a 12-day reorder reminder, written and ready to paste.","#launch","admin"],
- ["Reviews","Review block on every bag page. Install Judge.me and set the request to 7 days after delivery.","#launch","admin"],
- ["Richer product pages","Origin, roast level from your bag labels, roast date, brew guide for 3 methods, and 2 extra photo slots per bag.","#p-blue-mountain-harmony","done"],
- ["In-store QR code","Table card and cup sticker linking to the subscribe page, tagged so Shopify reports in-store sign-ups.","#qr","done"],
- ["Christmas gifting","Gift subscriptions (3 or 6 months), gift cards from £15, gift messages on every bag, last order dates.","#gifts","done"],
- ["Home hero and banner","Headline and buttons over the hero, November banner replacing the October sale.","#home","done"],
- ["SEO","Descriptive alt text on every photo, local business schema with address and hours, a proper page title on every page.","#launch","done"],
- ].map((f,i)=>`<div class="fix"><span class="n">${i+1}</span><div><h3>${f[0]}</h3><p>${f[1]}</p><p class="where"><a href="${f[2]}">View</a></p></div><span class="chip ${f[3]}">${f[3]=="done"?"In preview":"Shopify admin"}</span></div>`).join("")}
 </div>`,
 
 launch:()=>`
@@ -656,7 +617,7 @@ Isaac's Coffee</pre><div><button class="copy" data-copy-from="mailC">Copy email<
   <li>Settings, Custom data, Products: add metafields origin, process, roast_level (number 1 to 5), roast_date (date), brew_guide (rich text).</li>
   <li>Fill them for the four bags using the preview pages, then add them to the product template as blocks.</li>
   <li>Upload two new photos per bag. Suggested shots are on each product page.</li>
-  <li>Rename the House Blend label or the product so they match. The bag says “Dark Velvet Blend”, the shop says “Isaac's House Blend”, and the URL says “isaacs-dark-velvet-blend”.</li></ol></section>
+  <li>The confirmed product title and preview URL are “Isaac's House Blend” and isaacs-house-blend. Replace the current bag artwork, which still says “Dark Velvet Blend”, before launch.</li></ol></section>
  <section><h2>9. In-store QR</h2><ol><li>Print the <a href="#qr">table card and cup sticker</a>. PNG and SVG files are in the handover.</li></ol></section>
  <section><h2>10. Christmas gifting</h2><ol>
   <li>Products, Gift cards, Create gift card: denominations £15, £25, £50, £75. Shopify emails the card and lets the buyer pick a send date and message.</li>
@@ -726,7 +687,7 @@ function product(h){
   <dl class="specs">
    <div><dt>Origin</dt><dd>${p.origin}</dd></div>
    <div><dt>Roast level</dt><dd>${beans(p.roast)}${p.roast} of 5 · ${ROAST_LABEL[p.roast]}</dd></div>
-   <div><dt>Roast date</dt><dd><em class="draft">Roasted ${roastDate()}</em></dd></div>
+   <div><dt>Roast day</dt><dd><em class="draft">Draft: not confirmed</em></dd></div>
    <div><dt>Process</dt><dd>${p.process}</dd></div>
    <div><dt>Tasting notes</dt><dd>${esc(p.notes)}</dd></div>
    <div><dt>Best for</dt><dd>${esc(p.best)}</dd></div>
@@ -736,7 +697,7 @@ function product(h){
     <div class="brew-tabs" role="tablist">${Object.keys(BREW).map((k,i)=>`<button type="button" role="tab" aria-selected="${i==0}" data-brew="${k}">${k}</button>`).join("")}</div>
     <div id="recipe"></div></div></details>
    <details class="acc"><summary>Freshness and storage</summary><div class="in"><p>Rest beans 5 to 7 days after the roast date for espresso, 3 days for filter. Best within 6 weeks. Keep the bag sealed, away from light and heat. No fridge.</p></div></details>
-   <details class="acc"><summary>Delivery and collection</summary><div class="in"><p>Tracked 48 £3.95, free over £35. Tracked 24 £4.95. Free click and collect in St Margarets. <a href="#shipping">Full shipping policy</a>.</p></div></details>
+   <details class="acc"><summary>Delivery and collection</summary><div class="in"><p>Tracked 48 £3.95 under £35 and free at £35 or over. Tracked 24 £4.95 under £35 and £1.95 at £35 or over. Free click and collect in St Margarets. <a href="#shipping">Full shipping policy</a>.</p></div></details>
   </div>
  </div>
 </div>
