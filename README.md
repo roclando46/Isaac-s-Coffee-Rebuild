@@ -2,6 +2,8 @@
 
 A clickable preview of isaacscoffee.co.uk with twelve fixes. It keeps the live theme's black and white palette, Ovo headings and Instrument Sans body text.
 
+The full replacement website (Next.js, Stripe, Postgres) is in the `site/` folder. See `site/README.md`.
+
 Open `index.html` in a browser. Pages: Home, Shop, four bag pages, Subscribe, Gifts, Pickup, Shipping, Contact, What changed, Launch checklist and In-store QR.
 
 ## Files
