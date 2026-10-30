@@ -23,6 +23,6 @@ page = (template.replace("{{logo}}", assets["logo"])
                 .replace("{{qr}}", assets["qr"])
                 .replace("{{IMGS}}", json.dumps(images)))
 # Template opens with <title>, metas and <style>; the rest is body content.
-split = page.index('<div class="ribbon">')
+split = page.index('<div class="announce">')
 (ROOT / "index.html").write_text(HEAD + page[:split] + "</head>\n<body>\n" + page[split:] + "\n</body>\n</html>\n")
 print("Wrote index.html")

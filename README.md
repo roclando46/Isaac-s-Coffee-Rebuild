@@ -2,7 +2,7 @@
 
 A clickable preview of isaacscoffee.co.uk with twelve fixes. It keeps the live theme's black and white palette, Ovo headings and Instrument Sans body text.
 
-Open `index.html` in a browser. Pages: Home, Shop, four bag pages, Subscribe, Gifts, Pickup, Shipping, Contact, What changed, Launch checklist and In-store QR.
+Open `index.html` in a browser. Pages: Home, Shop, four bag pages, Subscribe, Gifts, Pickup, Shipping, Contact, Launch checklist and In-store QR.
 
 ## Files
 
