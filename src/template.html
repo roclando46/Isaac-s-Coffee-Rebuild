@@ -1,0 +1,725 @@
+<title>Isaac's Coffee Rebuild</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Speciality coffee beans and ceremonial matcha from St Margarets, TW1. Delivered or collect in store.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Ovo&display=swap">
+<style>
+/* Layout: the live Shopify (Dawn) structure kept, mint ground + forest green type, one serif display moment per view */
+:root{
+  /* Live theme colours only: #090A0A page, #000000 and #000905 sections, #FFFFFF text and buttons */
+  --ink:#000905; --bg:#090A0A; --fg:#FFFFFF; --surface:#000000; --muted:rgba(255,255,255,.75); --line:rgba(255,255,255,.2);
+  --band:#000000; --band-fg:#FFFFFF; --btn:#FFFFFF; --btn-fg:#000000;
+  --ok:#FFFFFF; --draft:#FFFFFF; --draft-bg:transparent;
+  --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Ovo",Georgia,"Times New Roman",serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--band)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.15}
+h1{font:400 clamp(2.2rem,5.5vw,3.6rem)/1.1 var(--serif)}
+h2{font:400 clamp(1.9rem,4vw,2.6rem)/1.1 var(--serif)}
+h3{font-size:1.05rem;font-weight:600}
+p{margin:0}
+.eyebrow{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:0 1.4rem;border:1.5px solid var(--btn);background:var(--btn);color:var(--btn-fg);font:600 .95rem var(--sans);letter-spacing:.02em;text-decoration:none;cursor:pointer;border-radius:2px}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--fg)}
+.btn:hover{filter:brightness(1.12)}
+.draft{color:var(--fg);border-bottom:2px dotted var(--fg);font-style:normal}
+/* preview ribbon */
+.ribbon{background:var(--ink);color:#FFFFFF;font-size:.8rem}
+.ribbon .wrap{display:flex;gap:.75rem 1.25rem;flex-wrap:wrap;align-items:center;justify-content:space-between;padding-block:.5rem}
+.ribbon a{color:#FFFFFF;font-weight:600}
+.ribbon .key{display:inline-flex;align-items:center;gap:.4rem}
+.ribbon .key i{display:inline-block;width:1.6em;height:.9em;border-bottom:2px dotted #FFFFFF}
+/* announcement + header */
+.announce{background:var(--band);color:var(--band-fg);text-align:center;font-size:.85rem;font-weight:500;letter-spacing:.02em}
+.announce .wrap{padding-block:.6rem}
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+header.site .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1rem;padding-block:.6rem}
+.logo{display:block;width:92px;height:92px;background:var(--fg);-webkit-mask:url({{logo}}) center/contain no-repeat;mask:url({{logo}}) center/contain no-repeat}
+nav.main{display:flex;gap:1.4rem;flex-wrap:wrap;font-size:.95rem}
+nav.main a{text-decoration:none;padding:.3rem 0;border-bottom:1.5px solid transparent}
+nav.main a[aria-current="page"],nav.main a:hover{border-color:var(--fg)}
+.head-right{display:flex;justify-content:flex-end;gap:.75rem;align-items:center}
+.cart-btn{background:none;border:1.5px solid var(--fg);color:var(--fg);font:600 .9rem var(--sans);padding:.5rem .9rem;cursor:pointer;border-radius:2px;white-space:nowrap}
+.menu-btn{display:none;background:none;border:0;color:var(--fg);font:600 .9rem var(--sans);cursor:pointer;padding:.5rem 0}
+@media (max-width:820px){
+  header.site .wrap{grid-template-columns:auto 1fr auto}
+  .logo{width:58px;height:58px}
+  nav.main{display:none;grid-column:1/-1;flex-direction:column;gap:.2rem;padding-bottom:.5rem}
+  nav.main.open{display:flex}
+  .menu-btn{display:block;order:-1}
+  .head-left{order:-1}
+}
+main{display:block;min-height:60vh}
+section.block{padding-block:clamp(2.5rem,6vw,4.5rem)}
+/* home */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center;padding-block:clamp(2rem,5vw,3.5rem)}
+.hero p.lead{font-size:1.1rem;max-width:34rem;margin-top:1rem}
+.hero .ctas{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem}
+.hero img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.hero .facts{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem;font-size:.9rem}
+.hero .facts b{display:block;font-size:1.05rem}
+@media (max-width:820px){.hero{grid-template-columns:1fr}}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:1rem;flex-wrap:wrap;margin-bottom:1.75rem}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.25rem}
+@media (max-width:900px){.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.card{display:flex;flex-direction:column;gap:.35rem;text-decoration:none}
+.card .ph{background:var(--surface);aspect-ratio:4/5;overflow:hidden;border:1px solid var(--line)}
+.card .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.card:hover .ph img{transform:scale(1.03)}
+.card h3{margin-top:.5rem}
+.card .notes{font-size:.88rem;color:var(--muted)}
+.card .price{font-weight:600;font-variant-numeric:tabular-nums}
+.card .sub{font-size:.82rem;color:var(--ok);font-weight:600}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:center}
+@media (max-width:820px){.split{grid-template-columns:1fr}}
+.band{background:var(--band);color:var(--band-fg)}
+.band .eyebrow,.band .muted{color:rgba(255,255,255,.75)}
+.band .btn{background:#FFFFFF;color:#000000;border-color:#FFFFFF}
+.band .btn.ghost{background:transparent;color:#FFFFFF}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;margin-top:2rem}
+.steps div{border-top:1px solid rgba(255,255,255,.2);padding-top:1rem}
+.steps b{display:block;margin-bottom:.3rem}
+@media (max-width:720px){.steps{grid-template-columns:1fr}}
+.prose{max-width:40rem;display:grid;gap:1rem}
+/* product */
+.crumbs{font-size:.85rem;color:var(--muted);padding-top:1.25rem}
+.crumbs a{text-decoration:none}
+.pdp{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3.5rem);padding-block:1.5rem 3rem}
+@media (max-width:860px){.pdp{grid-template-columns:1fr}}
+.gallery{display:grid;gap:.75rem;align-content:start}
+.gallery .main{background:var(--surface);border:1px solid var(--line);aspect-ratio:4/5;overflow:hidden}
+.gallery .main img{width:100%;height:100%;object-fit:contain;display:block}
+.thumbs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem}
+.thumbs button{padding:0;border:1.5px solid var(--line);background:var(--surface);aspect-ratio:1;cursor:pointer;overflow:hidden;color:var(--muted);font:500 .7rem/1.3 var(--sans)}
+.thumbs button[aria-pressed="true"]{border-color:var(--fg)}
+.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.thumbs .slot{border-style:dashed;display:flex;align-items:center;justify-content:center;text-align:center;padding:.4rem;color:var(--muted)}
+.buy{display:grid;gap:1.25rem;align-content:start}
+.buy .vendor{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.priceline{display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.priceline .now{font-size:1.6rem;font-weight:600}
+.priceline .was{text-decoration:line-through;color:var(--muted)}
+.priceline .tag{font-size:.8rem;font-weight:600;color:var(--ok)}
+.taxnote{font-size:.85rem;color:var(--muted)}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:.5rem}
+legend{font-size:.85rem;font-weight:600;margin-bottom:.5rem;padding:0}
+.pills{display:flex;flex-wrap:wrap;gap:.5rem}
+.pills label{position:relative}
+.pills input{position:absolute;opacity:0;inset:0}
+.pills span{display:inline-block;padding:.55rem 1.1rem;border:1.5px solid var(--line);border-radius:999px;font-size:.9rem;cursor:pointer;background:var(--surface)}
+.pills input:checked+span{border-color:var(--fg);background:var(--fg);color:var(--bg)}
+.pills input:focus-visible+span{outline:2px solid var(--fg);outline-offset:2px}
+.ptype{display:grid;gap:.6rem}
+.ptype label.opt{display:grid;grid-template-columns:auto 1fr auto;gap:.75rem;align-items:start;padding:1rem;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;border-radius:2px}
+.ptype label.opt:has(input:checked){border-color:var(--fg)}
+.ptype input[type=radio]{accent-color:#FFFFFF;width:18px;height:18px;margin:.15rem 0 0}
+.ptype .t{font-weight:600}
+.ptype .d{font-size:.85rem;color:var(--muted)}
+.ptype .p{font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+.ptype select{margin-top:.6rem;font:500 .9rem var(--sans);padding:.45rem .6rem;border:1.5px solid var(--line);background:var(--bg);color:var(--fg);border-radius:2px}
+.stock{display:flex;align-items:center;gap:.5rem;font-size:.9rem;font-weight:500}
+.stock::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--ok)}
+.qtyrow{display:flex;gap:.75rem;flex-wrap:wrap}
+.qty{display:inline-flex;border:1.5px solid var(--line);background:var(--surface)}
+.qty button{width:44px;background:none;border:0;color:var(--fg);font-size:1.2rem;cursor:pointer}
+.qty output{min-width:2.5rem;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.qtyrow .btn{flex:1}
+.ship-hint{font-size:.88rem;padding:.75rem 1rem;border:1px solid var(--line);background:var(--surface)}
+.specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.specs div{background:var(--bg);padding:.85rem 1rem;min-width:0}
+.specs dt{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.specs dd{margin:.2rem 0 0;font-weight:500}
+.beans{display:inline-flex;gap:3px;vertical-align:middle;margin-right:.4rem}
+.beans i{width:10px;height:14px;border-radius:50%;border:1.5px solid var(--fg)}
+.beans i.f{background:var(--fg)}
+.beans i.h{background:linear-gradient(90deg,var(--fg) 50%,transparent 50%)}
+details.acc{border-top:1px solid var(--line)}
+details.acc:last-of-type{border-bottom:1px solid var(--line)}
+details.acc summary{cursor:pointer;padding:1rem 0;font-weight:600;list-style:none;display:flex;justify-content:space-between}
+details.acc summary::after{content:"+";font-weight:400}
+details.acc[open] summary::after{content:"\2013"}
+details.acc .in{padding-bottom:1.25rem;display:grid;gap:.75rem;font-size:.95rem}
+.brew{display:grid;gap:.75rem}
+.brew-tabs{display:flex;gap:.4rem;flex-wrap:wrap}
+.brew-tabs button{border:1.5px solid var(--line);background:var(--surface);color:var(--fg);padding:.4rem .9rem;font:500 .85rem var(--sans);cursor:pointer;border-radius:999px}
+.brew-tabs button[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.recipe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.5rem;font-variant-numeric:tabular-nums}
+.recipe div{background:var(--surface);border:1px solid var(--line);padding:.6rem;min-width:0}
+.recipe b{display:block;font-size:1.05rem}
+.recipe small{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em}
+@media (max-width:480px){.recipe{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.reviews{border-top:1px solid var(--line);padding-block:2.5rem}
+.reviews .box{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:center;padding:1.25rem;border:1px solid var(--line);background:var(--surface)}
+.stars{letter-spacing:.15em;color:var(--muted)}
+/* policies & contact */
+.page-head{padding-block:clamp(2rem,5vw,3.5rem) 1.5rem;border-bottom:1px solid var(--line)}
+.page-head p{margin-top:.75rem;max-width:40rem}
+.table-wrap{overflow-x:auto}
+table.rates{border-collapse:collapse;width:100%;min-width:520px;font-variant-numeric:tabular-nums}
+table.rates th,table.rates td{text-align:left;padding:.85rem .75rem;border-bottom:1px solid var(--line);vertical-align:top}
+table.rates th{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+table.rates td.free{color:var(--ok);font-weight:600}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2.5rem}
+@media (max-width:760px){.cols{grid-template-columns:1fr}}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(1.5rem,4vw,3rem);padding-block:2.5rem}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr}}
+.info{display:grid;gap:1.4rem;align-content:start;margin:0}
+.info dt{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.info dd{margin:.25rem 0 0}
+.hours{display:grid;grid-template-columns:auto 1fr;gap:.2rem 1.25rem;font-variant-numeric:tabular-nums}
+.copyrow{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.copy{background:none;border:1px solid var(--line);color:var(--fg);font:500 .75rem var(--sans);padding:.2rem .55rem;cursor:pointer;border-radius:2px}
+.map{position:relative;display:block;aspect-ratio:16/10;max-width:100%;border:1px solid var(--line);overflow:hidden;text-decoration:none;background:var(--surface)}
+.map canvas{width:100%;height:100%;display:block}
+.map .pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);background:var(--fg);color:var(--bg);font-size:.8rem;font-weight:600;padding:.4rem .7rem;white-space:nowrap}
+.map .pin::after{content:"";position:absolute;left:50%;bottom:-7px;margin-left:-7px;border:7px solid transparent;border-bottom:0;border-top-color:var(--fg)}
+.map .open{position:absolute;right:.75rem;bottom:.75rem;background:var(--bg);border:1px solid var(--fg);padding:.35rem .7rem;font-size:.8rem;font-weight:600}
+form.stack{display:grid;gap:.9rem}
+form.stack .two{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+@media (max-width:520px){form.stack .two{grid-template-columns:1fr}}
+.field{display:grid;gap:.3rem}
+.field label{font-size:.85rem;font-weight:600}
+.field input,.field textarea{font:400 1rem var(--sans);padding:.75rem .85rem;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);border-radius:2px;width:100%}
+.field input:focus,.field textarea:focus{border-color:var(--fg);outline:none}
+.msg{font-size:.9rem;font-weight:500}
+.msg.ok{color:var(--ok)}
+.msg.err{color:var(--fg)}
+/* footer */
+footer.site{background:var(--band);color:var(--band-fg);margin-top:3rem}
+footer.site .wrap{padding-block:3rem 1.5rem}
+.fgrid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1.3fr;gap:2rem}
+@media (max-width:900px){.fgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.fgrid{grid-template-columns:1fr}}
+footer h4{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;margin:0 0 .8rem;color:rgba(255,255,255,.75)}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:.45rem;font-size:.92rem}
+footer a{text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer .signup{display:flex;gap:0;margin-top:.75rem}
+footer .signup input{flex:1;min-width:0;font:400 .95rem var(--sans);padding:.7rem .8rem;border:1.5px solid #FFFFFF;background:transparent;color:#FFFFFF;border-radius:2px 0 0 2px}
+footer .signup input::placeholder{color:rgba(255,255,255,.75)}
+footer .signup button{border:1.5px solid #FFFFFF;background:#FFFFFF;color:#000000;font:600 .9rem var(--sans);padding:0 1rem;cursor:pointer;border-radius:0 2px 2px 0}
+footer .msg.ok{color:#FFFFFF}
+footer .msg.err{color:#FFFFFF}
+
+.fbase{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.2);margin-top:2.5rem;padding-top:1.25rem;font-size:.82rem;color:rgba(255,255,255,.75)}
+/* cart drawer */
+.drawer{position:fixed;inset:0 0 0 auto;width:min(420px,100%);background:var(--bg);border-left:1px solid var(--line);z-index:40;display:flex;flex-direction:column;padding:calc(1.25rem + env(safe-area-inset-top,0px)) max(1.25rem,env(safe-area-inset-right,0px)) calc(1.25rem + env(safe-area-inset-bottom,0px)) 1.25rem;gap:1rem;box-shadow:-20px 0 40px rgba(0,9,5,.18)}
+.scrim{position:fixed;inset:0;background:rgba(0,9,5,.45);z-index:35}
+.drawer header{display:flex;justify-content:space-between;align-items:center}
+.drawer .x{background:none;border:0;color:var(--fg);font-size:1.5rem;cursor:pointer}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);transition:width .3s}
+.lines{flex:1;overflow:auto;display:grid;gap:.75rem;align-content:start}
+.line{display:grid;grid-template-columns:56px 1fr auto;gap:.75rem;align-items:center;font-size:.9rem}
+.line img{width:56px;height:70px;object-fit:cover;border:1px solid var(--line)}
+.line .rm{background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;font:inherit;font-size:.8rem;padding:0}
+.totals{border-top:1px solid var(--line);padding-top:1rem;display:grid;gap:.4rem;font-variant-numeric:tabular-nums}
+.totals div{display:flex;justify-content:space-between}
+.totals .grand{font-weight:600;font-size:1.1rem}
+.toast{position:fixed;left:50%;bottom:calc(1.25rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:.7rem 1.1rem;font-size:.9rem;z-index:50;max-width:calc(100% - 32px)}
+/* checklist + qr */
+.fixlist{display:grid;gap:0;counter-reset:fix}
+.fix{display:grid;grid-template-columns:2.2rem 1fr auto;gap:1rem;padding:1.25rem 0;border-bottom:1px solid var(--line);align-items:start}
+.fix .n{font:400 1.6rem/1 var(--serif)}
+.fix p{font-size:.92rem;color:var(--muted);margin-top:.25rem}
+.fix .where a{font-weight:600}
+.chip{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .6rem;border-radius:999px;white-space:nowrap;border:1.5px solid currentColor}
+.chip.done{background:#FFFFFF;color:#000000;border-color:#FFFFFF}
+.chip.admin{color:#FFFFFF}
+@media (max-width:600px){.fix{grid-template-columns:2rem 1fr}.fix .chip{grid-column:2;justify-self:start}}
+.emailcard{border:1px solid var(--line);background:var(--surface);padding:1.25rem;display:grid;gap:.75rem;min-width:0}
+.emailcard .meta{display:grid;grid-template-columns:auto 1fr;gap:.2rem .9rem;font-size:.85rem}
+.emailcard .meta dt{color:var(--muted)}
+.emailcard .meta dd{margin:0}
+.emailcard pre{white-space:pre-wrap;font:400 .92rem/1.6 var(--sans);margin:0;padding:1rem;background:var(--bg);border:1px solid var(--line)}
+.setup ol{margin:0;padding-left:1.25rem;display:grid;gap:.45rem;font-size:.95rem}
+.setup{display:grid;gap:2.5rem}
+.setup section{display:grid;gap:1rem}
+code.snip{display:block;overflow-x:auto;white-space:pre;font:.8rem/1.5 ui-monospace,Menlo,monospace;padding:1rem;background:var(--surface);border:1px solid var(--line)}
+.tablecard{width:min(360px,100%);aspect-ratio:105/148;background:#FFFFFF;color:#000000;border:1px solid var(--line);padding:1.6rem;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;box-shadow:0 18px 40px rgba(0,9,5,.15)}
+.tablecard .lg{width:64px;height:64px;background:#000000;-webkit-mask:url({{logo}}) center/contain no-repeat;mask:url({{logo}}) center/contain no-repeat}
+.tablecard h3{font:400 1.7rem/1.1 var(--serif)}
+.tablecard img{width:56%;aspect-ratio:1}
+.tablecard small{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+.cupband{width:min(360px,100%);background:#000000;color:#FFFFFF;display:flex;align-items:center;gap:1rem;padding:.9rem 1rem;border-radius:2px}
+.cupband .q{background:#FFFFFF;padding:6px;width:84px;flex:none}
+.cupband .q img{display:block;width:100%}
+.cupband b{display:block;font:400 1.25rem/1.1 var(--serif)}
+.cupband span{font-size:.8rem;color:rgba(255,255,255,.75)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="ribbon"><div class="wrap">
+  <span><b>Rebuild preview</b> of isaacscoffee.co.uk with all 9 fixes. <a href="#fixes">See what changed</a></span>
+  <span class="key"><i></i>Draft copy for you to confirm</span>
+</div></div>
+<div class="announce"><div class="wrap">Free UK delivery on orders over £35. Subscribe and save 10% on every bag.</div></div>
+<header class="site"><div class="wrap">
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menu</button>
+  <nav class="main" id="mainNav" aria-label="Main">
+    <a href="#home">Home</a><a href="#shop">Shop Coffee</a><a href="#subscribe">Subscribe</a><a href="#pickup">Pickup in store</a><a href="#contact">Contact</a>
+  </nav>
+  <a href="#home" aria-label="Isaac's Coffee home"><span class="logo" role="img" aria-label="Isaac's Coffee"></span></a>
+  <div class="head-right"><button class="cart-btn" id="cartBtn">Cart (<span id="cartCount">0</span>)</button></div>
+</div></header>
+
+<main id="view" tabindex="-1"></main>
+
+<footer class="site"><div class="wrap">
+  <div class="fgrid">
+    <div>
+      <h4>Visit the café</h4>
+      <ul>
+        <li>Lower Ground, 120 St Margarets Road<br>Twickenham TW1 2AA</li>
+        <li>Opposite St Margarets station</li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=Isaac%27s+Coffee+120+St+Margarets+Road+Twickenham+TW1+2AA" target="_blank" rel="noopener">Open in Google Maps</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Opening hours</h4>
+      <ul>
+        <li>Mon to Fri <em class="draft">7:30am to 4pm</em></li>
+        <li>Saturday <em class="draft">8am to 4pm</em></li>
+        <li>Sunday <em class="draft">9am to 3pm</em></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Get in touch</h4>
+      <ul>
+        <li><em class="draft">hello@isaacscoffee.co.uk</em></li>
+        <li><em class="draft">020 0000 0000</em></li>
+        <li><a href="#contact">Contact form</a></li>
+        <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>10% off your first order</h4>
+      <p style="font-size:.92rem">Join the list for new roasts and your welcome code.</p>
+      <form class="signup" id="footSignup" novalidate>
+        <label for="footEmail" class="sr" hidden>Email</label>
+        <input id="footEmail" type="email" placeholder="Your email" autocomplete="email" aria-label="Email address">
+        <button type="submit">Sign up</button>
+      </form>
+      <p class="msg" id="footMsg" role="status"></p>
+    </div>
+  </div>
+  <div class="fbase">
+    <span>© 2026 Isaac's Coffee, St Margarets</span>
+    <span><a href="#shipping">Shipping policy</a> · <a href="https://isaacscoffee.co.uk/policies/refund-policy" target="_blank" rel="noopener">Refund policy</a> · <a href="https://isaacscoffee.co.uk/policies/privacy-policy" target="_blank" rel="noopener">Privacy policy</a></span>
+  </div>
+</div></footer>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-label="Cart">
+  <header><h3>Your cart</h3><button class="x" id="closeCart" aria-label="Close cart">×</button></header>
+  <div><p id="freeMsg" style="font-size:.9rem;margin-bottom:.5rem"></p><div class="bar"><i id="freeBar" style="width:0"></i></div></div>
+  <div class="lines" id="lines"></div>
+  <div class="totals" id="totals"></div>
+  <button class="btn" id="checkout">Check out</button>
+</aside>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script>
+const IMG = {{IMGS}};
+const QR = "{{qr}}";
+const FREE = 35;
+const SIZES = ["250g","500g","1kg"], GRINDS = ["Whole Bean","Filter","Espresso"];
+const P = [
+ {h:"isaacs-house-blend", name:"Isaac's House Blend", notes:"Caramel, dark chocolate", prices:[12.5,24,37], roast:4,
+  blurb:"A rich espresso blend with smooth notes of dark chocolate and caramel. Extremely balanced, with low acidity. The coffee we pour every day in the café.",
+  origin:'<em class="draft">Brazil and Colombia</em>', process:'<em class="draft">Natural and washed</em>', best:"Espresso, milk drinks, cafetière",
+  imgs:["IMG-3577","IMG_7715"], slots:["Bag on the café counter","Flat white made with this blend"]},
+ {h:"isaacs-decaf", name:"Brazilian Bold Decaf", notes:"Dark chocolate", prices:[15,28,41], roast:4,
+  blurb:"Bold and smooth, with notes of dark chocolate. Decaffeinated by the chemical-free Swiss Water process, so you get a full cup any time of day.",
+  origin:"Brazil", process:"Swiss Water decaf", best:"Espresso, cafetière, evening cups",
+  imgs:["IMG-3575","IMG_7718"], slots:["Beans close up","Cafetière brew at home"]},
+ {h:"blue-mountain-harmony", name:"Blue Mountain Harmony", notes:"Honey, plum", prices:[12.5,24,37], roast:2,
+  blurb:"A blend of Brazil and El Salvador put together to echo the famous Jamaica Blue Mountain beans. Light, sweet and clean.",
+  origin:"Brazil and El Salvador", process:'<em class="draft">Washed</em>', best:"Filter, V60, AeroPress",
+  imgs:["IMG-3378"], slots:["Bag on the café counter","Pour-over in progress","Beans close up"]},
+ {h:"south-american-fusion", name:"South American Fusion", notes:"Pecan, toffee, milk chocolate", prices:[12.5,24,37], roast:3.5,
+  blurb:"A medium-bodied espresso with soft acidity, built from Guatemalan and Brazilian beans. Works as a straight shot and in milk.",
+  origin:"Guatemala and Brazil", process:'<em class="draft">Washed and natural</em>', best:"Espresso, moka pot, cafetière",
+  imgs:["IMG-3576"], slots:["Bag on the café counter","Espresso shot pulling","Beans close up"]},
+];
+const DRINKS=[["Iced Matcha","From £4.50","IcedMatcha","iced-matcha"],["Hot Coffee","From £3.70","Cappuccino","iced-drinks-copy"],["Matcha Latte","From £4.20","Matchalatteregular","matcha"]];
+const ROAST_LABEL={2:"Light to medium",3.5:"Medium",4:"Medium to dark"};
+const BREW={
+ "Espresso":[["18g","Coffee in"],["36g","Liquid out"],["28 to 32s","Shot time"],["93°C","Water"]],
+ "V60 / Filter":[["15g","Coffee"],["250g","Water"],["3 min","Total time"],["94°C","Water"]],
+ "Cafetière":[["30g","Coffee"],["500ml","Water"],["4 min","Steep"],["Just off boil","Water"]],
+};
+const BREW_TIP={
+ "Espresso":"Choose the Espresso grind. Pull a 1:2 ratio, then adjust grind finer if the shot runs fast and sour, coarser if slow and bitter.",
+ "V60 / Filter":"Choose the Filter grind. Bloom with 40g water for 30 seconds, then pour in slow circles to 250g. Aim to finish draining by 3 minutes.",
+ "Cafetière":"Choose Whole Bean and grind coarse at home, or ask us to grind for Filter. Stir after 1 minute, steep 4 minutes, skim the crust, then plunge slowly.",
+};
+const $=s=>document.querySelector(s);
+const gbp=n=>"£"+n.toFixed(2);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let cart=[]; try{cart=JSON.parse(localStorage.getItem("ic_cart")||"[]")}catch(e){}
+const save=()=>{try{localStorage.setItem("ic_cart",JSON.stringify(cart))}catch(e){}};
+function toast(t){const el=$("#toast");el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,2600)}
+function beans(n){let s='<span class="beans" aria-hidden="true">';for(let i=1;i<=5;i++)s+=`<i class="${n>=i?"f":n>=i-.5?"h":""}"></i>`;return s+"</span>"}
+function roastDate(){const d=new Date();d.setDate(d.getDate()-((d.getDay()+7-1)%7));return d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}
+
+function card(p){return `<a class="card" href="#p-${p.h}">
+ <div class="ph"><img src="${IMG[p.imgs[0]]}" alt="${esc(p.name)} 250g bag" loading="lazy"></div>
+ <h3>${esc(p.name)}</h3><p class="notes">${esc(p.notes)}</p>
+ <p class="price">From ${gbp(p.prices[0])}</p><p class="sub">Or ${gbp(p.prices[0]*.9)} on subscription</p></a>`}
+
+const views={
+home:()=>`
+<div class="wrap hero">
+ <div>
+  <p class="eyebrow">St Margarets, TW1 · Family-run</p>
+  <h1>Speciality coffee and ceremonial matcha, from our basement to your kitchen.</h1>
+  <p class="lead">Order beans for delivery or collect in store, opposite St Margarets station. Free UK delivery over £35.</p>
+  <div class="ctas"><a class="btn" href="#shop">Shop coffee</a><a class="btn ghost" href="#subscribe">Subscribe and save 10%</a></div>
+  <div class="facts"><span><b>4 blends</b>whole bean or ground</span><span><b>From £11.25</b>per bag on subscription</span><span><b>Free</b>click and collect</span></div>
+ </div>
+ <img src="${IMG.IMG_2777}" alt="Baristas making coffee behind the bar at Isaac's Coffee">
+</div>
+<section class="block wrap">
+ <div class="sec-head"><h2>Shop our coffee</h2><a href="#shop">View all</a></div>
+ <div class="grid4">${P.map(card).join("")}</div>
+</section>
+<section class="band"><div class="wrap block">
+ <div class="split">
+  <div><p class="eyebrow">Coffee subscription</p><h2 style="margin-top:.5rem">Never run out. Save 10% on every bag.</h2>
+   <p style="margin-top:1rem;max-width:32rem">Pick a blend, a grind and how often. We roast, pack and post it every 2 or 4 weeks. Skip, swap or cancel any time from your account.</p>
+   <div class="ctas" style="display:flex;gap:.75rem;margin-top:1.5rem;flex-wrap:wrap"><a class="btn" href="#subscribe">Start a subscription</a></div></div>
+  <div class="steps" style="margin-top:0">
+   <div><b>1. Choose</b><span class="muted">Blend, bag size and grind.</span></div>
+   <div><b>2. Set the rhythm</b><span class="muted">Every 2 or 4 weeks.</span></div>
+   <div><b>3. Save 10%</b><span class="muted">On every delivery, for as long as you stay.</span></div>
+  </div>
+ </div>
+</div></section>
+<section class="block wrap">
+ <div class="sec-head"><h2>Click and collect</h2><a href="#pickup">Order ahead</a></div>
+ <div class="grid4">${DRINKS.map(d=>`<a class="card" href="https://isaacscoffee.co.uk/products/${d[3]}" target="_blank" rel="noopener"><div class="ph" style="aspect-ratio:1"><img src="${IMG[d[2]]}" alt="${d[0]}" loading="lazy"></div><h3>${d[0]}</h3><p class="price">${d[1]}</p></a>`).join("")}
+  <a class="card" href="#contact"><div class="ph" style="aspect-ratio:1;display:grid;place-items:center;padding:1.5rem;text-align:center"><span><b style="font:400 1.5rem/1.2 var(--serif)">Lower Ground, 120 St Margarets Road</b><br><span class="muted">Opposite the station</span></span></div><h3>Find us</h3><p class="price">TW1 2AA</p></a>
+ </div>
+</section>
+<section class="block wrap" style="border-top:1px solid var(--line)">
+ <div class="split"><div><p class="eyebrow">About us</p><h2 style="margin-top:.5rem">Great coffee. Exceptional matcha. Local connections.</h2></div>
+ <div class="prose"><p>Isaac's Coffee is an independent, family-run café in St Margarets, serving Twickenham and Richmond.</p><p>We're known for speciality coffee and some of the best ceremonial-grade matcha in the area. Our basement café is a cosy place to meet friends, work, or grab a perfectly pulled espresso on the way to the train.</p></div></div>
+</section>`,
+
+shop:()=>`
+<div class="wrap page-head"><p class="eyebrow">Coffee beans</p><h1>Shop coffee</h1><p>Every bag comes whole bean or ground for filter or espresso, in 250g, 500g or 1kg. Subscribe for 10% off, or buy once.</p></div>
+<section class="block wrap"><div class="grid4">${P.map(card).join("")}</div></section>`,
+
+subscribe:()=>`
+<div class="wrap page-head"><p class="eyebrow">Coffee subscription</p><h1>Fresh beans every 2 or 4 weeks. 10% off, always.</h1>
+<p>Choose any blend below. Subscribe is pre-selected on every bag. Manage, skip or cancel from your account, no fees.</p></div>
+<section class="block wrap">
+ <div class="cols" style="margin-bottom:2.5rem">
+  <div class="table-wrap"><table class="rates"><thead><tr><th>Bag</th><th>One-time</th><th>Subscription</th><th>You save</th></tr></thead><tbody>
+   ${SIZES.map((s,i)=>`<tr><td>${s} blend</td><td>${gbp(P[0].prices[i])}</td><td class="free">${gbp(P[0].prices[i]*.9)}</td><td>${gbp(P[0].prices[i]*.1)}</td></tr>`).join("")}
+   ${SIZES.map((s,i)=>`<tr><td>${s} decaf</td><td>${gbp(P[1].prices[i])}</td><td class="free">${gbp(P[1].prices[i]*.9)}</td><td>${gbp(P[1].prices[i]*.1)}</td></tr>`).join("")}
+  </tbody></table></div>
+  <div class="prose"><h3>How it works</h3><p>A 500g subscription costs ${gbp(21.6)} and covers about 30 cups. Two 500g bags every 4 weeks comes to ${gbp(43.2)}, which ships free.</p><p>Picked up the QR code from your table? Welcome. The beans in your cup today are the House Blend.</p></div>
+ </div>
+ <div class="grid4">${P.map(card).join("")}</div>
+</section>`,
+
+pickup:()=>`
+<div class="wrap page-head"><p class="eyebrow">Click and collect</p><h1>Order ahead, skip the queue</h1><p>Order on the live site and collect from Lower Ground, 120 St Margarets Road. Bags of beans ordered online can also be collected free.</p></div>
+<section class="block wrap"><div class="grid4">${DRINKS.map(d=>`<a class="card" href="https://isaacscoffee.co.uk/products/${d[3]}" target="_blank" rel="noopener"><div class="ph" style="aspect-ratio:1"><img src="${IMG[d[2]]}" alt="${d[0]}" loading="lazy"></div><h3>${d[0]}</h3><p class="price">${d[1]}</p></a>`).join("")}</div></section>`,
+
+shipping:()=>`
+<div class="wrap page-head"><p class="eyebrow">Policy</p><h1>Shipping policy and rates</h1><p>We roast in small batches and post Monday to Friday. Orders placed before <em class="draft">12pm</em> on a weekday leave the same day.</p></div>
+<section class="block wrap" style="display:grid;gap:2.5rem">
+ <div class="table-wrap"><table class="rates"><thead><tr><th>Service</th><th>Arrives</th><th>Under £35</th><th>£35 and over</th></tr></thead><tbody>
+  <tr><td>Royal Mail Tracked 48</td><td>2 to 3 working days</td><td><em class="draft">£3.95</em></td><td class="free">Free</td></tr>
+  <tr><td>Royal Mail Tracked 24</td><td>1 to 2 working days</td><td><em class="draft">£4.95</em></td><td><em class="draft">£1.95</em></td></tr>
+  <tr><td>Click and collect, St Margarets</td><td>Ready in 2 hours during opening times</td><td class="free">Free</td><td class="free">Free</td></tr>
+ </tbody></table></div>
+ <div class="cols">
+  <div class="prose"><h3>Where we deliver</h3><p>UK mainland, Northern Ireland, Isle of Man and Channel Islands. Highlands and islands may take one extra day. We don't ship outside the UK yet.</p>
+  <h3>Subscriptions</h3><p>Subscription orders use the same rates. Your order ships on the date shown in your account, and the £35 free delivery threshold applies to each delivery.</p></div>
+  <div class="prose"><h3>Tracking</h3><p>You get a tracking link by email as soon as your order ships.</p>
+  <h3>Lost or damaged parcels</h3><p>Email us within 7 days of the expected delivery date with your order number. We'll replace or refund it.</p>
+  <h3>Collection</h3><p>We email you when your order is ready. Bring your order number. We hold orders for 14 days.</p></div>
+ </div>
+</section>`,
+
+contact:()=>`
+<div class="wrap page-head"><p class="eyebrow">Contact</p><h1>Visit, call or write to us</h1><p>We're in the basement café right opposite St Margarets station.</p></div>
+<div class="wrap contact-grid">
+ <dl class="info">
+  <div><dt>Address</dt><dd>Isaac's Coffee<br>Lower Ground, 120 St Margarets Road<br>Twickenham TW1 2AA</dd></div>
+  <div><dt>Opening hours</dt><dd class="hours"><span>Mon to Fri</span><em class="draft">7:30am to 4pm</em><span>Saturday</span><em class="draft">8am to 4pm</em><span>Sunday</span><em class="draft">9am to 3pm</em></dd></div>
+  <div><dt>Email</dt><dd class="copyrow"><em class="draft">hello@isaacscoffee.co.uk</em><button class="copy" data-copy="hello@isaacscoffee.co.uk">Copy</button></dd></div>
+  <div><dt>Phone</dt><dd class="copyrow"><em class="draft">020 0000 0000</em><button class="copy" data-copy="020 0000 0000">Copy</button></dd></div>
+  <div><dt>Getting here</dt><dd>1 minute from St Margarets station (South Western Railway).</dd></div>
+ </dl>
+ <div style="display:grid;gap:1.5rem;min-width:0">
+  <a class="map" href="https://www.google.com/maps/search/?api=1&query=Isaac%27s+Coffee+120+St+Margarets+Road+Twickenham+TW1+2AA" target="_blank" rel="noopener" aria-label="Open Isaac's Coffee in Google Maps">
+   <canvas id="mapCanvas" width="800" height="500" aria-hidden="true"></canvas><span class="pin">Isaac's Coffee</span><span class="open">Open in Google Maps</span></a>
+  <form class="stack" id="contactForm" novalidate>
+   <h3>Send us a message</h3>
+   <div class="two"><div class="field"><label for="cName">Name</label><input id="cName" autocomplete="name"></div>
+   <div class="field"><label for="cEmail">Email</label><input id="cEmail" type="email" autocomplete="email" required></div></div>
+   <div class="field"><label for="cPhone">Phone (optional)</label><input id="cPhone" type="tel" autocomplete="tel"></div>
+   <div class="field"><label for="cMsg">Message</label><textarea id="cMsg" rows="4"></textarea></div>
+   <div><button class="btn" type="submit">Send message</button></div>
+   <p class="msg" id="cOut" role="status"></p>
+  </form>
+ </div>
+</div>`,
+
+fixes:()=>`
+<div class="wrap page-head"><p class="eyebrow">Change log</p><h1>What changed</h1><p>Green items are built into this preview. Amber items need a few clicks inside Shopify admin; the full copy and steps are on the <a href="#launch">launch checklist</a>.</p></div>
+<div class="wrap fixlist">
+ ${[
+ ["Shipping policy and rates","New shipping page, free delivery over £35, live cart bar showing how far each order is from free delivery.","#shipping","done"],
+ ["Contact page and footer","Address, hours, phone, business email and a map on Contact and in every footer. I could not find “!20” on any live page, so check where you saw it.","#contact","done"],
+ ["Sign-up, labels and stock","Sign-up button works with validation and a confirmation. One price shown once, one product name. Every variant shows its stock status.","#p-isaacs-house-blend","done"],
+ ["Meta description","Set to: “Speciality coffee beans and ceremonial matcha from St Margarets, TW1. Delivered or collect in store.”","#launch","done"],
+ ["Subscriptions","Subscribe is the default on every bag page, 10% off, every 2 or 4 weeks. Install Shopify Subscriptions to make checkout charge it.","#launch","admin"],
+ ["Shopify Email flows","Welcome email with WELCOME10 and a 12-day reorder reminder, written and ready to paste.","#launch","admin"],
+ ["Reviews","Review block on every bag page. Install Judge.me and set the request to 7 days after delivery.","#launch","admin"],
+ ["Richer product pages","Origin, roast level from your bag labels, roast date, brew guide for 3 methods, and 2 extra photo slots per bag.","#p-blue-mountain-harmony","done"],
+ ["In-store QR code","Table card and cup sticker linking to the subscribe page, tagged so Shopify reports in-store sign-ups.","#qr","done"],
+ ].map((f,i)=>`<div class="fix"><span class="n">${i+1}</span><div><h3>${f[0]}</h3><p>${f[1]}</p><p class="where"><a href="${f[2]}">View</a></p></div><span class="chip ${f[3]}">${f[3]=="done"?"In preview":"Shopify admin"}</span></div>`).join("")}
+</div>`,
+
+launch:()=>`
+<div class="wrap page-head"><p class="eyebrow">Launch checklist</p><h1>Turning the preview on in Shopify</h1><p>Each step below happens in your Shopify admin. Copy blocks are ready to paste.</p></div>
+<div class="wrap setup block">
+ <section><h2>1. Shipping rates</h2><ol>
+  <li>Settings, Shipping and delivery, General shipping rates, UK zone.</li>
+  <li>Add “Royal Mail Tracked 48” at £3.95 with condition: order price £0 to £34.99.</li>
+  <li>Add “Free Tracked 48” at £0 with condition: order price £35 and up.</li>
+  <li>Add “Royal Mail Tracked 24” at £4.95 (under £35) and £1.95 (£35 and up).</li>
+  <li>Settings, Policies, Shipping policy: paste the text from the <a href="#shipping">shipping page</a>.</li></ol></section>
+ <section><h2>2. Contact details, map and email</h2><ol>
+  <li>Settings, Store details: set sender and customer email to hello@isaacscoffee.co.uk. Create the address in Google Workspace or Zoho Mail on your domain.</li>
+  <li>Online Store, Themes, Customise, Footer: add a Text block with address, hours, phone and email.</li>
+  <li>Contact page: add a Custom Liquid section with this map:</li></ol>
+  <code class="snip">&lt;iframe src="https://www.google.com/maps?q=Isaac%27s+Coffee,+120+St+Margarets+Road,+Twickenham+TW1+2AA&amp;output=embed"
+  width="100%" height="380" style="border:0" loading="lazy" title="Map to Isaac's Coffee"&gt;&lt;/iframe&gt;</code></section>
+ <section><h2>3. Sign-up, labels and stock</h2><ol>
+  <li>Customise, Footer, Email sign-up: turn on “Show email signup” and set the button label to “Sign up”.</li>
+  <li>Product page, Price block: untick “Show unit price” and remove the second price block. Remove the duplicate Title block above the vendor line.</li>
+  <li>Products, each bag, Variants: tick “Track quantity” and set stock on all 9 variants, or untick it and set “Continue selling when out of stock”. Today the theme renders “Sold out” and “Variant sold out or unavailable” on every option.</li></ol></section>
+ <section><h2>4. Meta description</h2><ol><li>Online Store, Preferences, Home page meta description:</li></ol>
+  <div class="emailcard"><pre id="meta">Speciality coffee beans and ceremonial matcha from St Margarets, TW1. Delivered or collect in store.</pre><div><button class="copy" data-copy-from="meta">Copy</button></div></div>
+  <p class="muted">Also set the Home page title to “Isaac's Coffee | Speciality Coffee and Matcha, St Margarets TW1”. Today it reads “ISAAC'S COFFEE – ISAAC'S COFFEE”.</p></section>
+ <section><h2>5. Subscriptions</h2><ol>
+  <li>Install Shopify Subscriptions (free) from the Shopify App Store.</li>
+  <li>Create a plan named “Coffee subscription”: delivery every 2 weeks and every 4 weeks, 10% off each.</li>
+  <li>Add the four coffee bags (all 36 variants) to the plan.</li>
+  <li>Customise the product template: move the subscription widget above “Add to cart” and set the default selection to Subscribe.</li>
+  <li>Create a page with the handle “subscribe” and use the layout shown on the <a href="#subscribe">subscribe page</a>.</li></ol></section>
+ <section><h2>6. Shopify Email automations</h2><ol>
+  <li>Discounts: create WELCOME10, 10% off, one use per customer, first order only.</li>
+  <li>Marketing, Automations: use the “Welcome new subscriber” template and paste email A.</li>
+  <li>Create a custom automation: trigger “Order paid”, condition “Order has no selling plan”, wait 12 days, condition “Customer has not placed another order”, send email B.</li></ol>
+  <div class="cols">
+   <div class="emailcard"><dl class="meta"><dt>Email</dt><dd>A. Welcome</dd><dt>Subject</dt><dd>Welcome to Isaac's. Here's 10% off.</dd><dt>Preview</dt><dd>Your code for fresh beans from St Margarets.</dd></dl>
+<pre id="mailA">Hi {{ customer.first_name | default: "there" }},
+
+Thanks for joining the Isaac's Coffee list.
+
+Here's 10% off your first order of beans:
+WELCOME10
+
+Not sure where to start? Our House Blend is the coffee we pour in the café every day: caramel, dark chocolate, low acidity. Great in milk.
+
+Free UK delivery on orders over £35, or collect free from Lower Ground, 120 St Margarets Road.
+
+See you soon,
+The Isaac's team</pre><div><button class="copy" data-copy-from="mailA">Copy email</button></div></div>
+   <div class="emailcard"><dl class="meta"><dt>Email</dt><dd>B. Reorder, day 12</dd><dt>Subject</dt><dd>Running low on beans?</dd><dt>Preview</dt><dd>Reorder in one tap, or subscribe and save 10%.</dd></dl>
+<pre id="mailB">Hi {{ customer.first_name | default: "there" }},
+
+A 250g bag makes about 15 cups, so yours is likely close to empty.
+
+Reorder in one tap below.
+
+Or switch to a subscription: the same coffee every 2 or 4 weeks, 10% off every bag, skip or cancel any time.
+
+[Reorder my coffee]   [Subscribe and save 10%]
+
+The Isaac's team, St Margarets</pre><div><button class="copy" data-copy-from="mailB">Copy email</button></div></div>
+  </div></section>
+ <section><h2>7. Reviews</h2><ol>
+  <li>Install Judge.me Product Reviews (free plan).</li>
+  <li>Judge.me, Settings, Review request: send 7 days after fulfilment “delivered” status. If carrier tracking does not return delivered, use 9 days after fulfilment.</li>
+  <li>Add the “Judge.me Review Widget” app block below the product description, and the star rating block under the product title.</li></ol>
+  <div class="emailcard"><dl class="meta"><dt>Subject</dt><dd>How's your {{ product_name }}?</dd></dl>
+<pre id="mailC">Hi {{ customer_first_name }},
+
+Your coffee arrived a week ago. How are you finding it?
+
+A two-line review helps other coffee lovers in TW1 and beyond pick their next bag.
+
+[Leave a review]
+
+Thank you,
+Isaac's Coffee</pre><div><button class="copy" data-copy-from="mailC">Copy email</button></div></div></section>
+ <section><h2>8. Product pages</h2><ol>
+  <li>Settings, Custom data, Products: add metafields origin, process, roast_level (number 1 to 5), roast_date (date), brew_guide (rich text).</li>
+  <li>Fill them for the four bags using the preview pages, then add them to the product template as blocks.</li>
+  <li>Upload two new photos per bag. Suggested shots are on each product page.</li>
+  <li>Rename the House Blend label or the product so they match. The bag says “Dark Velvet Blend”, the shop says “Isaac's House Blend”, and the URL says “isaacs-dark-velvet-blend”.</li></ol></section>
+ <section><h2>9. In-store QR</h2><ol><li>Print the <a href="#qr">table card and cup sticker</a>. PNG and SVG files are in the handover.</li></ol></section>
+</div>`,
+
+qr:()=>`
+<div class="wrap page-head"><p class="eyebrow">In-store</p><h1>Table card and cup sticker</h1><p>Both link to the subscribe page with tracking tags, so in-store sign-ups show up under Marketing in Shopify. Print the card at A6 (105 × 148mm) and the sticker at 60 × 25mm.</p></div>
+<section class="block wrap" style="display:flex;gap:2.5rem;flex-wrap:wrap;align-items:flex-start">
+ <div class="tablecard"><span class="lg"></span><div><h3>Love this coffee?<br>Get it at home.</h3><p style="margin-top:.6rem;font-size:.9rem">Subscribe and save 10% on every bag. Delivered every 2 or 4 weeks.</p></div><img src="${QR}" alt="QR code to the subscribe page"><small>Scan · isaacscoffee.co.uk/subscribe</small></div>
+ <div style="display:grid;gap:1.25rem;min-width:0">
+  <div class="cupband"><div class="q"><img src="${QR}" alt="QR code"></div><div><b>Take Isaac's home</b><span>Scan to subscribe. 10% off every bag.</span></div></div>
+  <div class="prose" style="max-width:24rem;font-size:.92rem"><p class="muted">Link in the code:</p><code class="snip" style="white-space:pre-wrap;word-break:break-all">isaacscoffee.co.uk/pages/subscribe?utm_source=instore&amp;utm_medium=qr&amp;utm_campaign=table</code><p class="muted">Use utm_campaign=cup on the sticker print run if you want to compare tables against cups.</p></div>
+ </div>
+</section>`,
+};
+
+function product(h){
+ const p=P.find(x=>x.h===h); if(!p) return views.shop();
+ const thumbs=[...p.imgs.map(k=>({k})),...p.slots.slice(0,Math.max(2,4-p.imgs.length)).map(s=>({s}))].slice(0,4);
+ return `
+<div class="wrap crumbs"><a href="#home">Home</a> / <a href="#shop">Shop coffee</a> / ${esc(p.name)}</div>
+<div class="wrap pdp">
+ <div class="gallery">
+  <div class="main"><img id="mainImg" src="${IMG[p.imgs[0]]}" alt="${esc(p.name)} bag label"></div>
+  <div class="thumbs">${thumbs.map((t,i)=>t.k?`<button data-img="${t.k}" aria-pressed="${i==0}" aria-label="Show photo ${i+1}"><img src="${IMG[t.k]}" alt=""></button>`:`<button class="slot" disabled title="Photo to add">Photo to add: ${esc(t.s)}</button>`).join("")}</div>
+ </div>
+ <div class="buy">
+  <div><p class="vendor">Isaac's Coffee · ${esc(p.notes)}</p><h1 style="margin-top:.4rem">${esc(p.name)}</h1></div>
+  <div><div class="priceline" id="priceline"></div><p class="taxnote">Taxes included. <a href="#shipping">Free UK delivery</a> over £35.</p></div>
+  <form id="buyForm" style="display:grid;gap:1.25rem">
+   <fieldset><legend>Bag size</legend><div class="pills">${SIZES.map((s,i)=>`<label><input type="radio" name="size" value="${i}" ${i==0?"checked":""}><span>${s}</span></label>`).join("")}</div></fieldset>
+   <fieldset><legend>Grind</legend><div class="pills">${GRINDS.map((g,i)=>`<label><input type="radio" name="grind" value="${g}" ${i==0?"checked":""}><span>${g}</span></label>`).join("")}</div></fieldset>
+   <fieldset class="ptype"><legend>Purchase options</legend>
+    <label class="opt"><input type="radio" name="ptype" value="sub" checked><span><span class="t">Subscribe and save 10%</span><br><span class="d">Free to skip, swap or cancel.</span><br>
+      <label for="freq" hidden>Delivery frequency</label><select id="freq" name="freq" aria-label="Delivery frequency"><option value="2">Deliver every 2 weeks</option><option value="4" selected>Deliver every 4 weeks</option></select></span><span class="p" id="subP"></span></label>
+    <label class="opt"><input type="radio" name="ptype" value="once"><span><span class="t">One-time purchase</span></span><span class="p" id="onceP"></span></label>
+   </fieldset>
+   <p class="stock" id="stock"></p>
+   <div class="qtyrow"><div class="qty"><button type="button" id="qMinus" aria-label="Decrease quantity">−</button><output id="qty">1</output><button type="button" id="qPlus" aria-label="Increase quantity">+</button></div>
+    <button class="btn" type="submit" id="addBtn">Add to cart</button></div>
+   <p class="ship-hint" id="shipHint"></p>
+  </form>
+  <p>${p.blurb}</p>
+  <dl class="specs">
+   <div><dt>Origin</dt><dd>${p.origin}</dd></div>
+   <div><dt>Roast level</dt><dd>${beans(p.roast)}${p.roast} of 5 · ${ROAST_LABEL[p.roast]}</dd></div>
+   <div><dt>Roast date</dt><dd><em class="draft">Roasted ${roastDate()}</em></dd></div>
+   <div><dt>Process</dt><dd>${p.process}</dd></div>
+   <div><dt>Tasting notes</dt><dd>${esc(p.notes)}</dd></div>
+   <div><dt>Best for</dt><dd>${esc(p.best)}</dd></div>
+  </dl>
+  <div>
+   <details class="acc" open><summary>Brew guide</summary><div class="in brew">
+    <div class="brew-tabs" role="tablist">${Object.keys(BREW).map((k,i)=>`<button type="button" role="tab" aria-selected="${i==0}" data-brew="${k}">${k}</button>`).join("")}</div>
+    <div id="recipe"></div></div></details>
+   <details class="acc"><summary>Freshness and storage</summary><div class="in"><p>Rest beans 5 to 7 days after the roast date for espresso, 3 days for filter. Best within 6 weeks. Keep the bag sealed, away from light and heat. No fridge.</p></div></details>
+   <details class="acc"><summary>Delivery and collection</summary><div class="in"><p>Tracked 48 £3.95, free over £35. Tracked 24 £4.95. Free click and collect in St Margarets. <a href="#shipping">Full shipping policy</a>.</p></div></details>
+  </div>
+ </div>
+</div>
+<section class="wrap reviews"><div class="sec-head" style="margin-bottom:1rem"><h2>Reviews</h2></div>
+ <div class="box"><div><span class="stars" aria-hidden="true">★★★★★</span> <span class="muted">No reviews yet</span><p style="margin-top:.3rem">Bought this bag? We email you 7 days after delivery to ask how it's brewing.</p></div><button class="btn ghost" type="button" id="revBtn">Write a review</button></div>
+</section>
+<section class="wrap block" style="padding-top:0"><div class="sec-head"><h2>You might also like</h2></div><div class="grid4">${P.filter(x=>x!==p).map(card).join("")}</div></section>`;
+}
+
+function bindProduct(h){
+ const p=P.find(x=>x.h===h); if(!p) return;
+ const f=$("#buyForm"); let qty=1;
+ const state=()=>({size:+f.size.value,grind:f.grind.value,ptype:f.ptype.value,freq:f.freq.value});
+ function upd(){
+  const s=state(), base=p.prices[s.size], sub=base*.9, unit=s.ptype=="sub"?sub:base;
+  $("#priceline").innerHTML=s.ptype=="sub"?`<span class="now">${gbp(sub)}</span><span class="was">${gbp(base)}</span><span class="tag">Save ${gbp(base-sub)} every ${s.freq} weeks</span>`:`<span class="now">${gbp(base)}</span>`;
+  $("#subP").textContent=gbp(sub); $("#onceP").textContent=gbp(base);
+  $("#stock").textContent=`In stock: ${SIZES[s.size]}, ${s.grind}. Roasted to order, ships in 1 to 2 working days.`;
+  $("#addBtn").textContent=s.ptype=="sub"?"Subscribe":"Add to cart";
+  const left=FREE-cartTotal()-unit*qty;
+  $("#shipHint").innerHTML=left<=0?"<b>This order ships free.</b> Free UK delivery over £35.":`Add ${gbp(left)} more for free UK delivery.`;
+ }
+ f.addEventListener("change",upd);
+ $("#qMinus").onclick=()=>{qty=Math.max(1,qty-1);$("#qty").textContent=qty;upd()};
+ $("#qPlus").onclick=()=>{qty=Math.min(10,qty+1);$("#qty").textContent=qty;upd()};
+ f.addEventListener("submit",e=>{e.preventDefault();const s=state();
+  const key=[p.h,s.size,s.grind,s.ptype,s.ptype=="sub"?s.freq:""].join("|");
+  const ex=cart.find(l=>l.key==key); if(ex) ex.qty+=qty; else cart.push({key,h:p.h,size:s.size,grind:s.grind,ptype:s.ptype,freq:s.freq,qty});
+  save();renderCart();openCart();upd();});
+ document.querySelectorAll(".thumbs button[data-img]").forEach(b=>b.onclick=()=>{$("#mainImg").src=IMG[b.dataset.img];document.querySelectorAll(".thumbs button[data-img]").forEach(x=>x.setAttribute("aria-pressed",x===b))});
+ const brew=k=>{$("#recipe").innerHTML=`<div class="recipe">${BREW[k].map(r=>`<div><b>${r[0]}</b><small>${r[1]}</small></div>`).join("")}</div><p style="margin-top:.75rem">${BREW_TIP[k]}</p>`;document.querySelectorAll("[data-brew]").forEach(b=>b.setAttribute("aria-selected",b.dataset.brew==k))};
+ document.querySelectorAll("[data-brew]").forEach(b=>b.onclick=()=>brew(b.dataset.brew)); brew("Espresso");
+ $("#revBtn").onclick=()=>toast("Judge.me opens its review form here once installed.");
+ upd();
+}
+
+function linePrice(l){const p=P.find(x=>x.h==l.h);const b=p.prices[l.size];return (l.ptype=="sub"?b*.9:b)*l.qty}
+function cartTotal(){return cart.reduce((a,l)=>a+linePrice(l),0)}
+function renderCart(){
+ const n=cart.reduce((a,l)=>a+l.qty,0); $("#cartCount").textContent=n;
+ const t=cartTotal(), left=FREE-t;
+ $("#freeMsg").innerHTML=n==0?"Free UK delivery on orders over £35.":left<=0?"<b>You've unlocked free UK delivery.</b>":`You're <b>${gbp(left)}</b> away from free UK delivery.`;
+ $("#freeBar").style.width=Math.min(100,t/FREE*100)+"%";
+ $("#lines").innerHTML=n==0?`<p class="muted">Your cart is empty. <a href="#shop">Shop coffee</a></p>`:cart.map((l,i)=>{const p=P.find(x=>x.h==l.h);return `<div class="line"><img src="${IMG[p.imgs[0]]}" alt=""><div><b>${esc(p.name)}</b><br><span class="muted">${SIZES[l.size]} · ${l.grind} · ${l.ptype=="sub"?"Every "+l.freq+" weeks, 10% off":"One-time"}</span><br>Qty ${l.qty} · <button class="rm" data-rm="${i}">Remove</button></div><b>${gbp(linePrice(l))}</b></div>`}).join("");
+ const ship=n==0?0:left<=0?0:3.95;
+ $("#totals").innerHTML=`<div><span>Subtotal</span><span>${gbp(t)}</span></div><div><span>Tracked 48 delivery</span><span>${n==0?"–":ship==0?"Free":gbp(ship)}</span></div><div class="grand"><span>Total</span><span>${gbp(t+ship)}</span></div>`;
+ document.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.rm,1);save();renderCart()});
+}
+function openCart(){$("#drawer").hidden=false;$("#scrim").hidden=false;$("#closeCart").focus()}
+function closeCart(){$("#drawer").hidden=true;$("#scrim").hidden=true}
+$("#cartBtn").onclick=openCart;$("#closeCart").onclick=closeCart;$("#scrim").onclick=closeCart;
+document.addEventListener("keydown",e=>{if(e.key=="Escape")closeCart()});
+$("#checkout").onclick=()=>toast(cart.length?"Checkout runs on Shopify in the live shop.":"Add a bag first.");
+
+function signup(form,input,out){form.addEventListener("submit",e=>{e.preventDefault();const v=input.value.trim();
+ if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){out.className="msg err";out.textContent="Enter an email like name@example.com.";input.focus();return}
+ out.className="msg ok";out.textContent=`You're on the list. Your WELCOME10 code is on its way to ${v}.`;input.value="";})}
+signup($("#footSignup"),$("#footEmail"),$("#footMsg"));
+
+function drawMap(){const c=$("#mapCanvas");if(!c)return;const x=c.getContext("2d"),cs=getComputedStyle(document.documentElement);
+ const bg=cs.getPropertyValue("--surface").trim(),ln=cs.getPropertyValue("--line").trim(),fg=cs.getPropertyValue("--muted").trim();
+ x.fillStyle=bg;x.fillRect(0,0,800,500);
+ x.strokeStyle=ln;x.lineCap="round";
+ [[[0,140],[800,330],22],[[330,0],[470,500],30],[[0,420],[800,380],14],[[600,0],[680,500],12],[[120,0],[90,500],12]].forEach(([a,b,w])=>{x.lineWidth=w;x.beginPath();x.moveTo(...a);x.lineTo(...b);x.stroke()});
+ x.setLineDash([18,12]);x.lineWidth=5;x.strokeStyle=fg;x.beginPath();x.moveTo(0,300);x.lineTo(800,190);x.stroke();x.setLineDash([]);
+ x.fillStyle=fg;x.font="600 20px Instrument Sans, sans-serif";
+ x.save();x.translate(560,345);x.rotate(.23);x.fillText("St Margarets Road",0,0);x.restore();
+ x.fillText("St Margarets station",470,200);x.fillText("Railway",40,282);}
+
+document.addEventListener("click",e=>{const b=e.target.closest("[data-copy],[data-copy-from]");if(!b)return;
+ const t=b.dataset.copy||document.getElementById(b.dataset.copyFrom).textContent;
+ navigator.clipboard.writeText(t).then(()=>{b.textContent="Copied";setTimeout(()=>b.textContent=b.dataset.copyFrom?"Copy":"Copy",1500)}).catch(()=>{const r=document.createRange();r.selectNodeContents(b.dataset.copyFrom?document.getElementById(b.dataset.copyFrom):b.previousElementSibling);const s=getSelection();s.removeAllRanges();s.addRange(r);toast("Selected. Press Ctrl+C or Cmd+C to copy.")})});
+
+$("#menuBtn").onclick=()=>{const n=$("#mainNav");n.classList.toggle("open");$("#menuBtn").setAttribute("aria-expanded",n.classList.contains("open"))};
+function route(){
+ const h=(location.hash||"#home").slice(1);
+ let html; if(h.startsWith("p-")) html=product(h.slice(2)); else html=(views[h]||views.home)();
+ $("#view").innerHTML=html;
+ const navKey=h.startsWith("p-")?"shop":h;
+ document.querySelectorAll("nav.main a").forEach(a=>{if(a.getAttribute("href")=="#"+navKey)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+ $("#mainNav").classList.remove("open");
+ if(h.startsWith("p-")) bindProduct(h.slice(2));
+ if(h=="contact"){drawMap();$("#contactForm").addEventListener("submit",e=>{e.preventDefault();const o=$("#cOut"),em=$("#cEmail").value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){o.className="msg err";o.textContent="Add your email so we can reply.";$("#cEmail").focus();return}
+  if(!$("#cMsg").value.trim()){o.className="msg err";o.textContent="Write a message before sending.";$("#cMsg").focus();return}
+  o.className="msg ok";o.textContent="Thanks. We reply within one working day.";e.target.reset();})}
+ window.scrollTo(0,0);
+}
+addEventListener("hashchange",route);
+matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change",drawMap);
+route();renderCart();
+</script>
