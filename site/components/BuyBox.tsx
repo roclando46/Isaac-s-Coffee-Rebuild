@@ -5,7 +5,7 @@ import { FREE_SHIPPING_THRESHOLD } from "@/content/settings";
 import { gbp, lineTotal, subPrice } from "@/lib/cart";
 import { useCart } from "./cart/CartProvider";
 
-export default function BuyBox({ product: p }: { product: Product }) {
+export default function BuyBox({ product: p }: { product: Pick<Product, "slug" | "prices" | "inStock"> }) {
   const { add, items } = useCart();
   const [size, setSize] = useState<Size>("250g");
   const [grind, setGrind] = useState<Grind>("Whole Bean");

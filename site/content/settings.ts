@@ -1,4 +1,5 @@
-// Shop facts. Values marked DRAFT come from the rebuild preview and need the owner's confirmation before launch.
+// Shop facts. Hours, email, phone and shipping prices were confirmed by the owner on 30 Oct 2026.
+// Values still marked DRAFT need confirming before launch.
 
 export const SHOP = {
   name: "Isaac's Coffee",
@@ -14,13 +15,13 @@ export const SHOP = {
     "https://www.google.com/maps/search/?api=1&query=Isaac%27s+Coffee+120+St+Margarets+Road+Twickenham+TW1+2AA",
   mapsEmbed:
     "https://www.google.com/maps?q=Isaac%27s+Coffee,+120+St+Margarets+Road,+Twickenham+TW1+2AA&output=embed",
-  email: "hello@isaacscoffee.co.uk", // DRAFT
-  phone: "020 0000 0000", // DRAFT
+  email: "hello@isaacscoffee.co.uk",
+  phone: "020 0000 0000", // Confirmed as listed, but reads like a placeholder: check before launch.
   instagram: "https://www.instagram.com/",
   tiktok: "https://www.tiktok.com/",
 } as const;
 
-// DRAFT. Day 0 is Sunday. Times are 24h "HH:MM" in UK time.
+// Day 0 is Sunday. Times are 24h "HH:MM" in UK time.
 export const HOURS: { label: string; days: number[]; open: string; close: string }[] = [
   { label: "Mon to Fri", days: [1, 2, 3, 4, 5], open: "07:30", close: "16:00" },
   { label: "Saturday", days: [6], open: "08:00", close: "16:00" },
@@ -32,13 +33,15 @@ export const FREE_SHIPPING_THRESHOLD = 3500;
 export const SUBSCRIPTION_DISCOUNT = 0.1;
 export const SUBSCRIPTION_WEEKS = [2, 4] as const;
 
-// DRAFT shipping prices.
+// Shipping prices. "days" are typical Royal Mail times.
 export const SHIPPING = {
   tracked48: { label: "Royal Mail Tracked 48", days: "2 to 3 working days", under: 395, over: 0 },
   tracked24: { label: "Royal Mail Tracked 24", days: "1 to 2 working days", under: 495, over: 195 },
   collect: { label: "Click and collect, St Margarets", days: "Ready in 2 hours during opening times", under: 0, over: 0 },
 } as const;
-export const DISPATCH_CUTOFF = "12pm"; // DRAFT
+// DRAFT: posting days and same-day cut-off are not confirmed. Set to e.g. "12pm" to show
+// "Orders placed before 12pm on a weekday leave the same day" on the shipping page.
+export const DISPATCH_CUTOFF: string | null = null;
 
 // DRAFT gift prices, delivery included.
 export const GIFT_SUBSCRIPTION = {

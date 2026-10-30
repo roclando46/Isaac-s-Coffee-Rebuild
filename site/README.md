@@ -48,14 +48,16 @@ You need accounts with Stripe, Vercel and Resend, and access to the isaacscoffee
 
 ## Facts to confirm before launch
 
-These values are drafts in `content/settings.ts` and `content/products.ts`:
+Confirmed on 30 October 2026: opening hours, business email, phone number and shipping prices. The phone number is listed as 020 0000 0000, which reads like a placeholder, so check it.
 
-- Opening hours (also used for drinks collection times)
-- Phone number and business email
-- Shipping prices and the 12pm dispatch cut-off
+Still drafts in `content/settings.ts` and `content/products.ts`:
+
+- Posting days and same-day dispatch cut-off (`DISPATCH_CUTOFF`, hidden until set)
 - Gift subscription prices (3 months £45, 6 months £89, delivery included)
 - Christmas last order dates (check Royal Mail's 2026 dates)
-- House Blend origin, and the process for House Blend, Blue Mountain Harmony and South American Fusion
+- House Blend origin, and the process for House Blend, Blue Mountain Harmony and South American Fusion. Unconfirmed values stay off the bag pages (`originDraft`, `processDraft`).
+- Roast day
+- New House Blend bag artwork: the label photo still says "Dark Velvet Blend"
 - Two more photos per bag (`photosToShoot` lists suggested shots)
 - Privacy, terms and refund pages: have them checked, and add the company name and number if the business is a limited company
 

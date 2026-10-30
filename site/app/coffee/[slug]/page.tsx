@@ -52,13 +52,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <div><p className="vendor">Isaac&apos;s Coffee · {p.notes}</p><h1 style={{ marginTop: ".4rem" }}>{p.name}</h1>
             {reviews.length > 0 && <p className="small"><a href="#reviews">{"★".repeat(Math.round(avg))} {avg.toFixed(1)} from {reviews.length} review{reviews.length > 1 ? "s" : ""}</a></p>}
           </div>
-          <BuyBox product={p} />
+          <BuyBox product={{ slug: p.slug, prices: p.prices, inStock: p.inStock }} />
           <p>{p.blurb}</p>
           <dl className="specs">
-            <div><dt>Origin</dt><dd>{p.origin}</dd></div>
+            {!p.originDraft && <div><dt>Origin</dt><dd>{p.origin}</dd></div>}
             <div><dt>Roast level</dt><dd><Beans n={p.roast} />{p.roast} of 5 · {p.roastLabel}</dd></div>
-            <div><dt>Roast date</dt><dd>Printed on every bag. Roasted weekly.</dd></div>
-            <div><dt>Process</dt><dd>{p.process}</dd></div>
+            <div><dt>Roast date</dt><dd>Printed on every bag</dd></div>
+            {!p.processDraft && <div><dt>Process</dt><dd>{p.process}</dd></div>}
             <div><dt>Tasting notes</dt><dd>{p.notes}</dd></div>
             <div><dt>Best for</dt><dd>{p.best}</dd></div>
           </dl>

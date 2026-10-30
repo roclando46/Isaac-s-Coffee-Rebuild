@@ -1,5 +1,6 @@
 // Coffee bags. Prices in pence, from the live Shopify store on 30 Oct 2026.
-// Text in DRAFT fields came from the rebuild preview and needs the owner's confirmation.
+// Fields flagged originDraft / processDraft are unconfirmed and stay off the live pages until confirmed.
+// "Isaac's House Blend" is the confirmed name. The current bag artwork still says "Dark Velvet Blend".
 
 export const SIZES = ["250g", "500g", "1kg"] as const;
 export const GRINDS = ["Whole Bean", "Filter", "Espresso"] as const;

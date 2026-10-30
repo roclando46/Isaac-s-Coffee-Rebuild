@@ -11,7 +11,9 @@ export default function Shipping() {
   return (
     <>
       <div className="wrap page-head"><p className="eyebrow">Policy</p><h1>Shipping policy and rates</h1>
-        <p>We roast in small batches and post Monday to Friday. Orders placed before {DISPATCH_CUTOFF} on a weekday leave the same day.</p></div>
+        <p>{DISPATCH_CUTOFF
+          ? `We post Monday to Friday. Orders placed before ${DISPATCH_CUTOFF} on a weekday leave the same day.`
+          : "We email your tracking number as soon as your order ships."}</p></div>
       <section className="block wrap" style={{ display: "grid", gap: "2.5rem" }}>
         <div className="table-wrap"><table className="rates">
           <thead><tr><th>Service</th><th>Arrives</th><th>Coffee under £35</th><th>£35 and over</th></tr></thead>
