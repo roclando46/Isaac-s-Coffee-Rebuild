@@ -1,6 +1,14 @@
 <title>Isaac's Coffee Rebuild</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Speciality coffee beans and ceremonial matcha from St Margarets, TW1. Delivered or collect in store.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CafeOrCoffeeShop","name":"Isaac's Coffee","url":"https://isaacscoffee.co.uk/",
+"image":"https://isaacscoffee.co.uk/cdn/shop/files/Untitled_design.png","priceRange":"£","servesCuisine":["Coffee","Matcha"],
+"address":{"@type":"PostalAddress","streetAddress":"Lower Ground, 120 St Margarets Road","addressLocality":"Twickenham","postalCode":"TW1 2AA","addressCountry":"GB"},
+"hasMap":"https://www.google.com/maps/search/?api=1&query=Isaac%27s+Coffee+120+St+Margarets+Road+Twickenham+TW1+2AA",
+"openingHours":["Mo-Fr 07:30-16:00","Sa 08:00-16:00","Su 09:00-15:00"],
+"sameAs":["https://www.instagram.com/","https://www.tiktok.com/"]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Ovo&display=swap">
 <style>
@@ -61,6 +69,23 @@ nav.main a[aria-current="page"],nav.main a:hover{border-color:var(--fg)}
 main{display:block;min-height:60vh}
 section.block{padding-block:clamp(2.5rem,6vw,4.5rem)}
 /* home */
+.hero2{position:relative;margin-top:1.5rem;background:var(--surface);overflow:hidden;border-radius:4px}
+.hero2 img{width:100%;aspect-ratio:16/7;object-fit:cover;display:block}
+.hero2 .over{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:1rem;padding:clamp(1.25rem,4vw,3rem);background:linear-gradient(0deg,rgba(0,0,0,.85),rgba(0,0,0,.35) 55%,rgba(0,0,0,0))}
+.hero2 h1{max-width:18ch}
+.hero2 .ctas{display:flex;gap:.75rem;flex-wrap:wrap}
+.hero-facts{display:flex;gap:1rem 2.5rem;flex-wrap:wrap;padding-block:1.25rem;border-bottom:1px solid var(--line);font-size:.9rem}
+.hero-facts b{display:block;font-size:1.05rem}
+@media (max-width:700px){.hero2 img{aspect-ratio:4/5}}
+.giftgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem}
+@media (max-width:820px){.giftgrid{grid-template-columns:1fr}}
+.giftcard{border:1px solid var(--line);background:var(--surface);padding:clamp(1.25rem,3vw,2rem);display:grid;gap:1.1rem;align-content:start;min-width:0}
+.giftcard .gc-face{aspect-ratio:1.586;max-width:320px;width:100%;border:1px solid var(--line);border-radius:10px;background:var(--bg);display:flex;flex-direction:column;justify-content:space-between;padding:1.1rem}
+.giftcard .gc-face b{font:400 2rem/1 var(--serif)}
+.giftcard .gc-logo{width:54px;height:54px;background:var(--fg);-webkit-mask:url({{logo}}) center/contain no-repeat;mask:url({{logo}}) center/contain no-repeat}
+.giftbox{display:grid;gap:.6rem;padding:1rem;border:1px solid var(--line)}
+.giftbox label.chk{display:flex;gap:.6rem;align-items:center;font-weight:600;cursor:pointer}
+.giftbox input[type=checkbox]{accent-color:#FFFFFF;width:18px;height:18px}
 .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center;padding-block:clamp(2rem,5vw,3.5rem)}
 .hero p.lead{font-size:1.1rem;max-width:34rem;margin-top:1rem}
 .hero .ctas{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem}
@@ -89,7 +114,7 @@ section.block{padding-block:clamp(2.5rem,6vw,4.5rem)}
 .steps div{border-top:1px solid rgba(255,255,255,.2);padding-top:1rem}
 .steps b{display:block;margin-bottom:.3rem}
 @media (max-width:720px){.steps{grid-template-columns:1fr}}
-.prose{max-width:40rem;display:grid;gap:1rem}
+.prose{max-width:40rem;display:grid;gap:1rem;align-content:start}
 /* product */
 .crumbs{font-size:.85rem;color:var(--muted);padding-top:1.25rem}
 .crumbs a{text-decoration:none}
@@ -259,14 +284,14 @@ code.snip{display:block;overflow-x:auto;white-space:pre;font:.8rem/1.5 ui-monosp
 </style>
 
 <div class="ribbon"><div class="wrap">
-  <span><b>Rebuild preview</b> of isaacscoffee.co.uk with all 9 fixes. <a href="#fixes">See what changed</a></span>
+  <span><b>Rebuild preview</b> of isaacscoffee.co.uk with 12 fixes. <a href="#fixes">See what changed</a></span>
   <span class="key"><i></i>Draft copy for you to confirm</span>
 </div></div>
-<div class="announce"><div class="wrap">Free UK delivery on orders over £35. Subscribe and save 10% on every bag.</div></div>
+<div class="announce"><div class="wrap">Free UK delivery over £35. Christmas gifts are in: <a href="#gifts">gift subscriptions and gift cards</a>.</div></div>
 <header class="site"><div class="wrap">
   <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menu</button>
   <nav class="main" id="mainNav" aria-label="Main">
-    <a href="#home">Home</a><a href="#shop">Shop Coffee</a><a href="#subscribe">Subscribe</a><a href="#pickup">Pickup in store</a><a href="#contact">Contact</a>
+    <a href="#home">Home</a><a href="#shop">Shop Coffee</a><a href="#subscribe">Subscribe</a><a href="#gifts">Gifts</a><a href="#pickup">Pickup in store</a><a href="#contact">Contact</a>
   </nav>
   <a href="#home" aria-label="Isaac's Coffee home"><span class="logo" role="img" aria-label="Isaac's Coffee"></span></a>
   <div class="head-right"><button class="cart-btn" id="cartBtn">Cart (<span id="cartCount">0</span>)</button></div>
@@ -351,6 +376,23 @@ const P = [
   origin:"Guatemala and Brazil", process:'<em class="draft">Washed and natural</em>', best:"Espresso, moka pot, cafetière",
   imgs:["IMG-3576"], slots:["Bag on the café counter","Espresso shot pulling","Beans close up"]},
 ];
+const ALT={
+ "IMG-3577":"Isaac's House Blend 250g bag label: caramel and dark chocolate, roast level 4 of 5",
+ "IMG_7715":"Black Isaac's Coffee bag of House Blend standing on coffee beans in the café",
+ "IMG-3575":"Brazilian Bold Decaf 250g bag label: dark chocolate, Swiss Water decaf, roast level 4 of 5",
+ "IMG_7718":"Black Isaac's Coffee bag of Brazilian Bold Decaf standing on coffee beans in the café",
+ "IMG-3378":"Blue Mountain Harmony 250g bag label: honey and plum, roast level 2 of 5",
+ "IMG-3576":"South American Fusion 250g bag label: pecan, toffee and milk chocolate, roast level 3.5 of 5",
+ "IMG_2777":"Baristas making coffee behind the bar at Isaac's Coffee, St Margarets",
+ "IcedMatcha":"Iced matcha latte in a clear takeaway cup at Isaac's Coffee",
+ "Cappuccino":"Latte art in an Isaac's Coffee takeaway cup",
+ "Matchalatteregular":"Hot matcha latte with latte art at Isaac's Coffee",
+};
+const GIFT_SUB={3:45,6:89};
+const GIFT_CARD=[15,25,50,75];
+const XMAS=[["Royal Mail Tracked 48","Wed 16 December, 12pm"],["Royal Mail Tracked 24","Fri 18 December, 12pm"],["Gift cards by email","Up to Christmas Day"],["Click and collect, St Margarets","Thu 24 December, during opening hours"]];
+const TITLES={home:"Isaac's Coffee | Speciality Coffee and Matcha, St Margarets TW1",shop:"Shop Coffee Beans | Isaac's Coffee",subscribe:"Coffee Subscription, 10% Off | Isaac's Coffee",gifts:"Coffee Gifts and Gift Cards | Isaac's Coffee",pickup:"Click and Collect | Isaac's Coffee",shipping:"Shipping Policy | Isaac's Coffee",contact:"Contact and Opening Hours | Isaac's Coffee",fixes:"What Changed | Isaac's Coffee",launch:"Launch Checklist | Isaac's Coffee",qr:"In-store QR | Isaac's Coffee"};
+const xmasTable=()=>`<div class="table-wrap"><table class="rates"><thead><tr><th>Christmas 2026</th><th>Order by</th></tr></thead><tbody>${XMAS.map(r=>`<tr><td>${r[0]}</td><td><em class="draft">${r[1]}</em></td></tr>`).join("")}</tbody></table></div>`;
 const DRINKS=[["Iced Matcha","From £4.50","IcedMatcha","iced-matcha"],["Hot Coffee","From £3.70","Cappuccino","iced-drinks-copy"],["Matcha Latte","From £4.20","Matchalatteregular","matcha"]];
 const ROAST_LABEL={2:"Light to medium",3.5:"Medium",4:"Medium to dark"};
 const BREW={
@@ -373,21 +415,22 @@ function beans(n){let s='<span class="beans" aria-hidden="true">';for(let i=1;i<
 function roastDate(){const d=new Date();d.setDate(d.getDate()-((d.getDay()+7-1)%7));return d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}
 
 function card(p){return `<a class="card" href="#p-${p.h}">
- <div class="ph"><img src="${IMG[p.imgs[0]]}" alt="${esc(p.name)} 250g bag" loading="lazy"></div>
+ <div class="ph"><img src="${IMG[p.imgs[0]]}" alt="${esc(ALT[p.imgs[0]])}" loading="lazy"></div>
  <h3>${esc(p.name)}</h3><p class="notes">${esc(p.notes)}</p>
  <p class="price">From ${gbp(p.prices[0])}</p><p class="sub">Or ${gbp(p.prices[0]*.9)} on subscription</p></a>`}
 
 const views={
 home:()=>`
-<div class="wrap hero">
- <div>
-  <p class="eyebrow">St Margarets, TW1 · Family-run</p>
-  <h1>Speciality coffee and ceremonial matcha, from our basement to your kitchen.</h1>
-  <p class="lead">Order beans for delivery or collect in store, opposite St Margarets station. Free UK delivery over £35.</p>
-  <div class="ctas"><a class="btn" href="#shop">Shop coffee</a><a class="btn ghost" href="#subscribe">Subscribe and save 10%</a></div>
-  <div class="facts"><span><b>4 blends</b>whole bean or ground</span><span><b>From £11.25</b>per bag on subscription</span><span><b>Free</b>click and collect</span></div>
- </div>
- <img src="${IMG.IMG_2777}" alt="Baristas making coffee behind the bar at Isaac's Coffee">
+<div class="wrap">
+ <section class="hero2" aria-label="Welcome">
+  <img src="${IMG.IMG_2777}" alt="${esc(ALT.IMG_2777)}">
+  <div class="over">
+   <p class="eyebrow" style="color:var(--fg)">St Margarets, TW1 · Family-run</p>
+   <h1>Speciality coffee and matcha from St Margarets</h1>
+   <div class="ctas"><a class="btn" href="#shop">Shop coffee</a><a class="btn ghost" href="#subscribe">Subscribe and save 10%</a></div>
+  </div>
+ </section>
+ <div class="hero-facts"><span><b>4 blends</b>whole bean or ground</span><span><b>From £11.25</b>per bag on subscription</span><span><b>Free UK delivery</b>over £35</span><span><b>Gifts</b><a href="#gifts">Gift subscriptions and cards</a></span></div>
 </div>
 <section class="block wrap">
  <div class="sec-head"><h2>Shop our coffee</h2><a href="#shop">View all</a></div>
@@ -407,7 +450,7 @@ home:()=>`
 </div></section>
 <section class="block wrap">
  <div class="sec-head"><h2>Click and collect</h2><a href="#pickup">Order ahead</a></div>
- <div class="grid4">${DRINKS.map(d=>`<a class="card" href="https://isaacscoffee.co.uk/products/${d[3]}" target="_blank" rel="noopener"><div class="ph" style="aspect-ratio:1"><img src="${IMG[d[2]]}" alt="${d[0]}" loading="lazy"></div><h3>${d[0]}</h3><p class="price">${d[1]}</p></a>`).join("")}
+ <div class="grid4">${DRINKS.map(d=>`<a class="card" href="https://isaacscoffee.co.uk/products/${d[3]}" target="_blank" rel="noopener"><div class="ph" style="aspect-ratio:1"><img src="${IMG[d[2]]}" alt="${esc(ALT[d[2]])}" loading="lazy"></div><h3>${d[0]}</h3><p class="price">${d[1]}</p></a>`).join("")}
   <a class="card" href="#contact"><div class="ph" style="aspect-ratio:1;display:grid;place-items:center;padding:1.5rem;text-align:center"><span><b style="font:400 1.5rem/1.2 var(--serif)">Lower Ground, 120 St Margarets Road</b><br><span class="muted">Opposite the station</span></span></div><h3>Find us</h3><p class="price">TW1 2AA</p></a>
  </div>
 </section>
@@ -436,7 +479,41 @@ subscribe:()=>`
 
 pickup:()=>`
 <div class="wrap page-head"><p class="eyebrow">Click and collect</p><h1>Order ahead, skip the queue</h1><p>Order on the live site and collect from Lower Ground, 120 St Margarets Road. Bags of beans ordered online can also be collected free.</p></div>
-<section class="block wrap"><div class="grid4">${DRINKS.map(d=>`<a class="card" href="https://isaacscoffee.co.uk/products/${d[3]}" target="_blank" rel="noopener"><div class="ph" style="aspect-ratio:1"><img src="${IMG[d[2]]}" alt="${d[0]}" loading="lazy"></div><h3>${d[0]}</h3><p class="price">${d[1]}</p></a>`).join("")}</div></section>`,
+<section class="block wrap"><div class="grid4">${DRINKS.map(d=>`<a class="card" href="https://isaacscoffee.co.uk/products/${d[3]}" target="_blank" rel="noopener"><div class="ph" style="aspect-ratio:1"><img src="${IMG[d[2]]}" alt="${esc(ALT[d[2]])}" loading="lazy"></div><h3>${d[0]}</h3><p class="price">${d[1]}</p></a>`).join("")}</div></section>`,
+
+gifts:()=>`
+<div class="wrap page-head"><p class="eyebrow">Christmas gifts</p><h1>Give fresh coffee from St Margarets</h1><p>A gift subscription posts fresh beans every 4 weeks, delivery included. A gift card arrives by email on the day you choose.</p></div>
+<section class="block wrap" style="display:grid;gap:2.5rem">
+ <div class="giftgrid">
+  <form class="giftcard" id="gsForm" novalidate>
+   <img src="${IMG["IMG_7715"]}" alt="${esc(ALT.IMG_7715)}" style="width:100%;aspect-ratio:4/3;object-fit:cover">
+   <div><h2>Gift subscription</h2><p class="muted" style="margin-top:.4rem">One 250g bag every 4 weeks, prepaid. Delivery included. No renewal, no card details needed from them.</p></div>
+   <fieldset><legend>Length</legend><div class="pills">
+    <label><input type="radio" name="gsLen" value="3" checked><span>3 months · ${gbp(GIFT_SUB[3])}</span></label>
+    <label><input type="radio" name="gsLen" value="6"><span>6 months · ${gbp(GIFT_SUB[6])}</span></label></div></fieldset>
+   <fieldset><legend>Blend</legend><div class="pills">${P.map((p,i)=>`<label><input type="radio" name="gsBlend" value="${p.h}" ${i==0?"checked":""}><span>${esc(p.name)}</span></label>`).join("")}</div></fieldset>
+   <fieldset><legend>Grind</legend><div class="pills">${GRINDS.map((g,i)=>`<label><input type="radio" name="gsGrind" value="${g}" ${i==0?"checked":""}><span>${g}</span></label>`).join("")}</div></fieldset>
+   <div class="field"><label for="gsName">Their name</label><input id="gsName" autocomplete="off"></div>
+   <div class="field"><label for="gsMsg">Gift message, printed on a card in the first box</label><textarea id="gsMsg" rows="3" maxlength="200"></textarea></div>
+   <div><button class="btn" type="submit">Add gift subscription</button></div>
+   <p class="msg" id="gsOut" role="status"></p>
+  </form>
+  <form class="giftcard" id="gcForm" novalidate>
+   <div class="gc-face" aria-hidden="true"><span class="gc-logo"></span><b id="gcFace">£25</b><span class="muted" style="font-size:.8rem">Isaac's Coffee gift card</span></div>
+   <div><h2>Gift card</h2><p class="muted" style="margin-top:.4rem">Spend online on beans and subscriptions. Sent by email with your message. Never expires.</p></div>
+   <fieldset><legend>Amount</legend><div class="pills">${GIFT_CARD.map(v=>`<label><input type="radio" name="gcAmt" value="${v}" ${v==25?"checked":""}><span>£${v}</span></label>`).join("")}</div></fieldset>
+   <div class="field"><label for="gcEmail">Their email</label><input id="gcEmail" type="email" autocomplete="off"></div>
+   <div class="field"><label for="gcDate">Send on</label><input id="gcDate" type="date"></div>
+   <div class="field"><label for="gcMsg">Message</label><textarea id="gcMsg" rows="3" maxlength="200"></textarea></div>
+   <div><button class="btn" type="submit">Add gift card</button></div>
+   <p class="msg" id="gcOut" role="status"></p>
+  </form>
+ </div>
+ <div class="cols">
+  <div class="prose"><h3>Christmas last order dates</h3>${xmasTable()}</div>
+  <div class="prose"><h3>Giving a single bag?</h3><p>Tick “This is a gift” on any bag page to add a printed message. We leave the price off the packing slip.</p><p><a class="btn ghost" href="#shop">Shop coffee</a></p></div>
+ </div>
+</section>`,
 
 shipping:()=>`
 <div class="wrap page-head"><p class="eyebrow">Policy</p><h1>Shipping policy and rates</h1><p>We roast in small batches and post Monday to Friday. Orders placed before <em class="draft">12pm</em> on a weekday leave the same day.</p></div>
@@ -447,7 +524,8 @@ shipping:()=>`
   <tr><td>Click and collect, St Margarets</td><td>Ready in 2 hours during opening times</td><td class="free">Free</td><td class="free">Free</td></tr>
  </tbody></table></div>
  <div class="cols">
-  <div class="prose"><h3>Where we deliver</h3><p>UK mainland, Northern Ireland, Isle of Man and Channel Islands. Highlands and islands may take one extra day. We don't ship outside the UK yet.</p>
+  <div class="prose"><h3>Christmas last order dates</h3>${xmasTable()}
+  <h3>Where we deliver</h3><p>UK mainland, Northern Ireland, Isle of Man and Channel Islands. Highlands and islands may take one extra day. We don't ship outside the UK yet.</p>
   <h3>Subscriptions</h3><p>Subscription orders use the same rates. Your order ships on the date shown in your account, and the £35 free delivery threshold applies to each delivery.</p></div>
   <div class="prose"><h3>Tracking</h3><p>You get a tracking link by email as soon as your order ships.</p>
   <h3>Lost or damaged parcels</h3><p>Email us within 7 days of the expected delivery date with your order number. We'll replace or refund it.</p>
@@ -493,6 +571,9 @@ fixes:()=>`
  ["Reviews","Review block on every bag page. Install Judge.me and set the request to 7 days after delivery.","#launch","admin"],
  ["Richer product pages","Origin, roast level from your bag labels, roast date, brew guide for 3 methods, and 2 extra photo slots per bag.","#p-blue-mountain-harmony","done"],
  ["In-store QR code","Table card and cup sticker linking to the subscribe page, tagged so Shopify reports in-store sign-ups.","#qr","done"],
+ ["Christmas gifting","Gift subscriptions (3 or 6 months), gift cards from £15, gift messages on every bag, last order dates.","#gifts","done"],
+ ["Home hero and banner","Headline and buttons over the hero, November banner replacing the October sale.","#home","done"],
+ ["SEO","Descriptive alt text on every photo, local business schema with address and hours, a proper page title on every page.","#launch","done"],
  ].map((f,i)=>`<div class="fix"><span class="n">${i+1}</span><div><h3>${f[0]}</h3><p>${f[1]}</p><p class="where"><a href="${f[2]}">View</a></p></div><span class="chip ${f[3]}">${f[3]=="done"?"In preview":"Shopify admin"}</span></div>`).join("")}
 </div>`,
 
@@ -577,6 +658,29 @@ Isaac's Coffee</pre><div><button class="copy" data-copy-from="mailC">Copy email<
   <li>Upload two new photos per bag. Suggested shots are on each product page.</li>
   <li>Rename the House Blend label or the product so they match. The bag says “Dark Velvet Blend”, the shop says “Isaac's House Blend”, and the URL says “isaacs-dark-velvet-blend”.</li></ol></section>
  <section><h2>9. In-store QR</h2><ol><li>Print the <a href="#qr">table card and cup sticker</a>. PNG and SVG files are in the handover.</li></ol></section>
+ <section><h2>10. Christmas gifting</h2><ol>
+  <li>Products, Gift cards, Create gift card: denominations £15, £25, £50, £75. Shopify emails the card and lets the buyer pick a send date and message.</li>
+  <li>Shopify Subscriptions: add a prepaid plan “Gift subscription”: deliver every 4 weeks, bill every 12 weeks (3 months, £45) or 24 weeks (6 months, £89), auto-renew off. Price includes delivery.</li>
+  <li>Customise, Product page: add a “Gift message” line item property block under the buy buttons. Search the theme editor for “Custom Liquid” and use the snippet below.</li>
+  <li>Settings, Notifications, Packing slip: hide prices when the order has a gift message.</li>
+  <li>Confirm the Christmas order dates against Royal Mail's published 2026 last posting dates.</li></ol>
+  <code class="snip">&lt;p&gt;&lt;label&gt;&lt;input type="checkbox" onchange="this.form.querySelector('#gift-msg').hidden=!this.checked"&gt; This is a gift&lt;/label&gt;&lt;/p&gt;
+&lt;textarea id="gift-msg" name="properties[Gift message]" form="{{ product_form_id }}" maxlength="200" hidden&gt;&lt;/textarea&gt;</code></section>
+ <section><h2>11. Home hero and banner</h2><ol>
+  <li>Customise, Home, Video section: add the heading “Speciality coffee and matcha from St Margarets” and two buttons, Shop coffee (/collections/frontpage) and Subscribe and save 10% (/pages/subscribe).</li>
+  <li>Announcement bar: replace the October sale text with “Free UK delivery over £35. Christmas gifts are in.” and link it to the gifts page.</li></ol></section>
+ <section><h2>12. SEO</h2><ol>
+  <li>Products, each bag, click each photo, Add alt text. Use the text in the README.</li>
+  <li>Online Store, Themes, Edit code, theme.liquid: paste the local business schema below just before &lt;/head&gt;. Update the hours to your real hours first.</li>
+  <li>Each product, Search engine listing: set the title to “[Blend name] Coffee Beans | Isaac's Coffee”.</li>
+  <li>Google Business Profile (business.google.com): add hours, phone, website, the subscribe page as a link, one product post per blend and at least 10 photos. Your hours appear nowhere online today.</li>
+  <li>No image work needed: Shopify already serves your photos as WebP, about 35KB each.</li></ol>
+  <code class="snip">&lt;script type="application/ld+json"&gt;
+{"@context":"https://schema.org","@type":"CafeOrCoffeeShop","name":"Isaac's Coffee","url":"https://isaacscoffee.co.uk/",
+ "priceRange":"£","servesCuisine":["Coffee","Matcha"],
+ "address":{"@type":"PostalAddress","streetAddress":"Lower Ground, 120 St Margarets Road","addressLocality":"Twickenham","postalCode":"TW1 2AA","addressCountry":"GB"},
+ "openingHours":["Mo-Fr 07:30-16:00","Sa 08:00-16:00","Su 09:00-15:00"]}
+&lt;/script&gt;</code></section>
 </div>`,
 
 qr:()=>`
@@ -597,8 +701,8 @@ function product(h){
 <div class="wrap crumbs"><a href="#home">Home</a> / <a href="#shop">Shop coffee</a> / ${esc(p.name)}</div>
 <div class="wrap pdp">
  <div class="gallery">
-  <div class="main"><img id="mainImg" src="${IMG[p.imgs[0]]}" alt="${esc(p.name)} bag label"></div>
-  <div class="thumbs">${thumbs.map((t,i)=>t.k?`<button data-img="${t.k}" aria-pressed="${i==0}" aria-label="Show photo ${i+1}"><img src="${IMG[t.k]}" alt=""></button>`:`<button class="slot" disabled title="Photo to add">Photo to add: ${esc(t.s)}</button>`).join("")}</div>
+  <div class="main"><img id="mainImg" src="${IMG[p.imgs[0]]}" alt="${esc(ALT[p.imgs[0]])}"></div>
+  <div class="thumbs">${thumbs.map((t,i)=>t.k?`<button data-img="${t.k}" aria-pressed="${i==0}" aria-label="Show photo ${i+1}"><img src="${IMG[t.k]}" alt="${esc(ALT[t.k])}"></button>`:`<button class="slot" disabled title="Photo to add">Photo to add: ${esc(t.s)}</button>`).join("")}</div>
  </div>
  <div class="buy">
   <div><p class="vendor">Isaac's Coffee · ${esc(p.notes)}</p><h1 style="margin-top:.4rem">${esc(p.name)}</h1></div>
@@ -615,6 +719,8 @@ function product(h){
    <div class="qtyrow"><div class="qty"><button type="button" id="qMinus" aria-label="Decrease quantity">−</button><output id="qty">1</output><button type="button" id="qPlus" aria-label="Increase quantity">+</button></div>
     <button class="btn" type="submit" id="addBtn">Add to cart</button></div>
    <p class="ship-hint" id="shipHint"></p>
+   <div class="giftbox"><label class="chk" for="isGift"><input type="checkbox" id="isGift">This is a gift</label>
+    <div class="field" id="giftField" hidden><label for="giftMsg">Gift message, printed on a card. We leave the price off.</label><textarea id="giftMsg" rows="2" maxlength="200"></textarea></div></div>
   </form>
   <p>${p.blurb}</p>
   <dl class="specs">
@@ -654,29 +760,46 @@ function bindProduct(h){
   $("#shipHint").innerHTML=left<=0?"<b>This order ships free.</b> Free UK delivery over £35.":`Add ${gbp(left)} more for free UK delivery.`;
  }
  f.addEventListener("change",upd);
+ $("#isGift").addEventListener("change",e=>$("#giftField").hidden=!e.target.checked);
  $("#qMinus").onclick=()=>{qty=Math.max(1,qty-1);$("#qty").textContent=qty;upd()};
  $("#qPlus").onclick=()=>{qty=Math.min(10,qty+1);$("#qty").textContent=qty;upd()};
  f.addEventListener("submit",e=>{e.preventDefault();const s=state();
-  const key=[p.h,s.size,s.grind,s.ptype,s.ptype=="sub"?s.freq:""].join("|");
-  const ex=cart.find(l=>l.key==key); if(ex) ex.qty+=qty; else cart.push({key,h:p.h,size:s.size,grind:s.grind,ptype:s.ptype,freq:s.freq,qty});
+  const gift=$("#isGift").checked?($("#giftMsg").value.trim()||" "):"";
+  const key=[p.h,s.size,s.grind,s.ptype,s.ptype=="sub"?s.freq:"",gift].join("|");
+  const ex=cart.find(l=>l.key==key); if(ex) ex.qty+=qty; else cart.push({key,h:p.h,size:s.size,grind:s.grind,ptype:s.ptype,freq:s.freq,gift,qty});
   save();renderCart();openCart();upd();});
- document.querySelectorAll(".thumbs button[data-img]").forEach(b=>b.onclick=()=>{$("#mainImg").src=IMG[b.dataset.img];document.querySelectorAll(".thumbs button[data-img]").forEach(x=>x.setAttribute("aria-pressed",x===b))});
+ document.querySelectorAll(".thumbs button[data-img]").forEach(b=>b.onclick=()=>{$("#mainImg").src=IMG[b.dataset.img];$("#mainImg").alt=ALT[b.dataset.img];document.querySelectorAll(".thumbs button[data-img]").forEach(x=>x.setAttribute("aria-pressed",x===b))});
  const brew=k=>{$("#recipe").innerHTML=`<div class="recipe">${BREW[k].map(r=>`<div><b>${r[0]}</b><small>${r[1]}</small></div>`).join("")}</div><p style="margin-top:.75rem">${BREW_TIP[k]}</p>`;document.querySelectorAll("[data-brew]").forEach(b=>b.setAttribute("aria-selected",b.dataset.brew==k))};
  document.querySelectorAll("[data-brew]").forEach(b=>b.onclick=()=>brew(b.dataset.brew)); brew("Espresso");
  $("#revBtn").onclick=()=>toast("Judge.me opens its review form here once installed.");
  upd();
 }
 
-function linePrice(l){const p=P.find(x=>x.h==l.h);const b=p.prices[l.size];return (l.ptype=="sub"?b*.9:b)*l.qty}
+function bindGifts(){
+ const add=(custom,out)=>{const key="gift|"+custom.name+"|"+custom.detail;const ex=cart.find(l=>l.key==key);if(ex)ex.qty++;else cart.push({key,custom,qty:1});save();renderCart();openCart();out.className="msg ok";out.textContent="Added to your cart.";};
+ const gc=$("#gcForm"), face=()=>$("#gcFace").textContent="£"+gc.gcAmt.value;
+ gc.addEventListener("change",face);face();
+ const d=new Date();$("#gcDate").value=d.toISOString().slice(0,10);$("#gcDate").min=$("#gcDate").value;
+ gc.addEventListener("submit",e=>{e.preventDefault();const em=$("#gcEmail").value.trim(),o=$("#gcOut");
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){o.className="msg err";o.textContent="Add their email so the card reaches them.";$("#gcEmail").focus();return}
+  add({name:`Gift card £${gc.gcAmt.value}`,price:+gc.gcAmt.value,img:"IMG_7715",detail:`To ${em}, sent ${new Date($("#gcDate").value).toLocaleDateString("en-GB",{day:"numeric",month:"short"})}`},o)});
+ const gs=$("#gsForm");
+ gs.addEventListener("submit",e=>{e.preventDefault();const o=$("#gsOut"),nm=$("#gsName").value.trim();
+  if(!nm){o.className="msg err";o.textContent="Add their name for the gift card in the box.";$("#gsName").focus();return}
+  const p=P.find(x=>x.h==gs.gsBlend.value),m=gs.gsLen.value;
+  add({name:`Gift subscription, ${m} months`,price:GIFT_SUB[m],img:p.imgs[0],detail:`${p.name}, 250g, ${gs.gsGrind.value} · For ${nm} · Delivery included`},o)});
+}
+function linePrice(l){if(l.custom)return l.custom.price*l.qty;const p=P.find(x=>x.h==l.h);const b=p.prices[l.size];return (l.ptype=="sub"?b*.9:b)*l.qty}
 function cartTotal(){return cart.reduce((a,l)=>a+linePrice(l),0)}
 function renderCart(){
  const n=cart.reduce((a,l)=>a+l.qty,0); $("#cartCount").textContent=n;
  const t=cartTotal(), left=FREE-t;
  $("#freeMsg").innerHTML=n==0?"Free UK delivery on orders over £35.":left<=0?"<b>You've unlocked free UK delivery.</b>":`You're <b>${gbp(left)}</b> away from free UK delivery.`;
  $("#freeBar").style.width=Math.min(100,t/FREE*100)+"%";
- $("#lines").innerHTML=n==0?`<p class="muted">Your cart is empty. <a href="#shop">Shop coffee</a></p>`:cart.map((l,i)=>{const p=P.find(x=>x.h==l.h);return `<div class="line"><img src="${IMG[p.imgs[0]]}" alt=""><div><b>${esc(p.name)}</b><br><span class="muted">${SIZES[l.size]} · ${l.grind} · ${l.ptype=="sub"?"Every "+l.freq+" weeks, 10% off":"One-time"}</span><br>Qty ${l.qty} · <button class="rm" data-rm="${i}">Remove</button></div><b>${gbp(linePrice(l))}</b></div>`}).join("");
- const ship=n==0?0:left<=0?0:3.95;
- $("#totals").innerHTML=`<div><span>Subtotal</span><span>${gbp(t)}</span></div><div><span>Tracked 48 delivery</span><span>${n==0?"–":ship==0?"Free":gbp(ship)}</span></div><div class="grand"><span>Total</span><span>${gbp(t+ship)}</span></div>`;
+ $("#lines").innerHTML=n==0?`<p class="muted">Your cart is empty. <a href="#shop">Shop coffee</a></p>`:cart.map((l,i)=>{if(l.custom)return `<div class="line"><img src="${IMG[l.custom.img]}" alt=""><div><b>${esc(l.custom.name)}</b><br><span class="muted">${esc(l.custom.detail)}</span><br>Qty ${l.qty} · <button class="rm" data-rm="${i}">Remove</button></div><b>${gbp(linePrice(l))}</b></div>`;const p=P.find(x=>x.h==l.h);return `<div class="line"><img src="${IMG[p.imgs[0]]}" alt=""><div><b>${esc(p.name)}</b><br><span class="muted">${SIZES[l.size]} · ${l.grind} · ${l.ptype=="sub"?"Every "+l.freq+" weeks, 10% off":"One-time"}${l.gift?" · Gift message added":""}</span><br>Qty ${l.qty} · <button class="rm" data-rm="${i}">Remove</button></div><b>${gbp(linePrice(l))}</b></div>`}).join("");
+ const physical=cart.some(l=>!l.custom);
+ const ship=!physical||left<=0?0:3.95;
+ $("#totals").innerHTML=`<div><span>Subtotal</span><span>${gbp(t)}</span></div><div><span>Tracked 48 delivery</span><span>${!physical?"–":ship==0?"Free":gbp(ship)}</span></div><div class="grand"><span>Total</span><span>${gbp(t+ship)}</span></div>`;
  document.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.rm,1);save();renderCart()});
 }
 function openCart(){$("#drawer").hidden=false;$("#scrim").hidden=false;$("#closeCart").focus()}
@@ -712,7 +835,11 @@ function route(){
  const navKey=h.startsWith("p-")?"shop":h;
  document.querySelectorAll("nav.main a").forEach(a=>{if(a.getAttribute("href")=="#"+navKey)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
  $("#mainNav").classList.remove("open");
+ closeCart();
  if(h.startsWith("p-")) bindProduct(h.slice(2));
+ if(h=="gifts") bindGifts();
+ const pp=h.startsWith("p-")&&P.find(x=>x.h==h.slice(2));
+ document.title=pp?`${pp.name} Coffee Beans | Isaac's Coffee`:(TITLES[h]||TITLES.home);
  if(h=="contact"){drawMap();$("#contactForm").addEventListener("submit",e=>{e.preventDefault();const o=$("#cOut"),em=$("#cEmail").value.trim();
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){o.className="msg err";o.textContent="Add your email so we can reply.";$("#cEmail").focus();return}
   if(!$("#cMsg").value.trim()){o.className="msg err";o.textContent="Write a message before sending.";$("#cMsg").focus();return}
